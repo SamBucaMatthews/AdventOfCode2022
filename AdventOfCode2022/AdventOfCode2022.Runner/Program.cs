@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using AdventOfCode2022.Solutions.DayFour;
 using AdventOfCode2022.Solutions.DayOne;
 using AdventOfCode2022.Solutions.DayThree;
 using AdventOfCode2022.Solutions.DayTwo;
@@ -66,6 +67,14 @@ void SolveDayThree()
     Console.WriteLine($"Day three solution (Part Two): {dayThreeSolutionPartTwo}");
 }
 
+void SolveDayFour()
+{
+    var dayFourSolutionPartOne = DayFour.CountFullyOverlappingAssignmentPairs(GetInput(nameof(DayFour)));
+
+    Console.WriteLine($"Day four solution (Part One): {dayFourSolutionPartOne}");
+}
+
 SolveDayOne();
 SolveDayTwo();
 SolveDayThree();
+SolveDayFour();

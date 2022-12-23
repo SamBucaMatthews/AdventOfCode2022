@@ -5,5 +5,6 @@
     &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.DayTwoTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.DayThreeTests.CalculatePriorities_GivenInputsFromExample_SolvesCorrectly&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.DayThreeTests.CalculatePrioritiesOfEachElfGroup_GivenInputsFromExample_SolvesCorrectly&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.DayFourTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
