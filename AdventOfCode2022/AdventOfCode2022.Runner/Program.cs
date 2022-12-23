@@ -9,8 +9,44 @@ IEnumerable<string> GetInput(string dayName)
     return File.ReadAllLines(dayOneInputFile);
 }
 
-var dayOneSolutionPartOne = DayOne.TotalCaloriesCarriedByElfWithMost(GetInput(nameof(DayOne)));
-var dayOneSolutionPartTwo = DayOne.TotalCaloriesCarriedByTopThreeElves(GetInput(nameof(DayOne)));
+void SolveDayOne()
+{
+    var i = DayOne.TotalCaloriesCarriedByElfWithMost(GetInput(nameof(DayOne)));
+    var dayOneSolutionPartTwo = DayOne.TotalCaloriesCarriedByTopThreeElves(GetInput(nameof(DayOne)));
 
-Console.WriteLine($"Day one solution (Part One): {dayOneSolutionPartOne}");
-Console.WriteLine($"Day one solution (Part Two): {dayOneSolutionPartTwo}");
+    Console.WriteLine($"Day one solution (Part One): {i}");
+    Console.WriteLine($"Day one solution (Part Two): {dayOneSolutionPartTwo}");
+}
+
+void SolveDayTwo()
+{
+    var rockConfig = new Rock(
+        "A",
+        "X",
+        1);
+
+    var paperConfig = new Paper(
+        "B",
+        "Y",
+        2);
+
+    var scissorsConfig = new Scissors(
+        "C",
+        "Z",
+        3);
+
+    var dayTwo = new DayTwo(
+        rockConfig,
+        paperConfig,
+        scissorsConfig,
+        6,
+        3);
+
+    var dayTwoSolutionPartOne = dayTwo.TotalPointsForStrategy(GetInput(nameof(DayTwo)));
+
+    Console.WriteLine($"Day two solution (Part One): {dayTwoSolutionPartOne}");
+}
+
+
+SolveDayOne();
+SolveDayTwo();

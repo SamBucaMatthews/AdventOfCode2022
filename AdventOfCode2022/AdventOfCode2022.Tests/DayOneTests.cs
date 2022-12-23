@@ -24,8 +24,8 @@ public class Tests
     [Test]
     public void TotalCaloriesCarriedByElfWithMost_GivenInputsFromExample_SolvesCorrectly()
     {
-        var actual = DayOne.TotalCaloriesCarriedByElfWithMost(Input.Split(Environment.NewLine));
         const int expected = 24000;
+        var actual = DayOne.TotalCaloriesCarriedByElfWithMost(Input.Split(Environment.NewLine));
 
         Assert.That(actual, Is.EqualTo(expected));
     }
@@ -33,8 +33,8 @@ public class Tests
     [Test]
     public void TotalCaloriesCarriedByTopThreeElves_GivenInputsFromExample_SolvesCorrectly()
     {
-        var actual = DayOne.TotalCaloriesCarriedByTopThreeElves(Input.Split(Environment.NewLine));
         const int expected = 45000;
+        var actual = DayOne.TotalCaloriesCarriedByTopThreeElves(Input.Split(Environment.NewLine));
 
         Assert.That(actual, Is.EqualTo(expected));
     }
