@@ -1,5 +1,8 @@
 ﻿namespace AdventOfCode2022.Solutions.DayThree;
 
+/// <summary>
+/// https://adventofcode.com/2022/day/3
+/// </summary>
 public static class DayThree
 {
     public static int CalculatePriorities(IEnumerable<string> rucksackInputs)

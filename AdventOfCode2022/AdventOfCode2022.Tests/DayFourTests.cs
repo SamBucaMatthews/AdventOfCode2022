@@ -15,10 +15,19 @@ public class DayFourTests
     };
     
     [Test]
-    public void CountFullyOverlappingAssignmentPairs_GivenInputsFromExample_SolvesCorrectly()
+    public void CountOverlappingAssignmentPairs_GivenInputsFromExampleAndFullyOverlapping_SolvesCorrectly()
     {
         const int expected = 2;
-        var actual = DayFour.CountFullyOverlappingAssignmentPairs(ExampleInput);
+        var actual = DayFour.CountOverlappingAssignmentPairs(ExampleInput, true);
+        
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void CountOverlappingAssignmentPairs_GivenInputsFromExampleAndPartiallyOverlapping_SolvesCorrectly()
+    {
+        const int expected = 4;
+        var actual = DayFour.CountOverlappingAssignmentPairs(ExampleInput, false);
         
         Assert.That(actual, Is.EqualTo(expected));
     }

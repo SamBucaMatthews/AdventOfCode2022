@@ -19,7 +19,10 @@ public class AssignmentPair
         ElfTwo = new Assignment(assignmentStrings[1]);
     }
 
-    public bool FullyOverlaps() =>
-        ElfOne.Sections.All(s => ElfTwo.Sections.Contains(s)) ||
-        ElfTwo.Sections.All(s => ElfOne.Sections.Contains(s));
+    public bool Overlaps(bool fullyOverlaps) =>
+        fullyOverlaps
+            ? ElfOne.Sections.All(s => ElfTwo.Sections.Contains(s)) ||
+              ElfTwo.Sections.All(s => ElfOne.Sections.Contains(s))
+            : ElfOne.Sections.Any(s => ElfTwo.Sections.Contains(s)) ||
+              ElfTwo.Sections.Any(s => ElfOne.Sections.Contains(s));
 }

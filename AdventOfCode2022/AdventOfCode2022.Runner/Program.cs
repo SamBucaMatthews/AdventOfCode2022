@@ -69,9 +69,16 @@ void SolveDayThree()
 
 void SolveDayFour()
 {
-    var dayFourSolutionPartOne = DayFour.CountFullyOverlappingAssignmentPairs(GetInput(nameof(DayFour)));
+    var dayFourSolutionPartOne = DayFour.CountOverlappingAssignmentPairs(
+        GetInput(nameof(DayFour)),
+        true);
+
+    var dayFourSolutionPartTwo = DayFour.CountOverlappingAssignmentPairs(
+        GetInput(nameof(DayFour)),
+        false);
 
     Console.WriteLine($"Day four solution (Part One): {dayFourSolutionPartOne}");
+    Console.WriteLine($"Day four solution (Part Two): {dayFourSolutionPartTwo}");
 }
 
 SolveDayOne();
