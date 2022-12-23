@@ -9,6 +9,8 @@ IEnumerable<string> GetInput(string dayName)
     return File.ReadAllLines(dayOneInputFile);
 }
 
-var dayOneSolution = DayOne.Solve(GetInput(nameof(DayOne)));
+var dayOneSolutionPartOne = DayOne.TotalCaloriesCarriedByElfWithMost(GetInput(nameof(DayOne)));
+var dayOneSolutionPartTwo = DayOne.TotalCaloriesCarriedByTopThreeElves(GetInput(nameof(DayOne)));
 
-Console.WriteLine($"Day one solution: {dayOneSolution}");
+Console.WriteLine($"Day one solution (Part One): {dayOneSolutionPartOne}");
+Console.WriteLine($"Day one solution (Part Two): {dayOneSolutionPartTwo}");

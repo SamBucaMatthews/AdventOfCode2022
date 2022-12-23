@@ -4,10 +4,7 @@ namespace AdventOfCode2022.Tests;
 
 public class Tests
 {
-    [Test]
-    public void Solve_GivenInputsFromExample_SolvesCorrectly()
-    {
-        const string input = """
+    private const string Input = """
             1000 
             2000 
             3000 
@@ -23,9 +20,21 @@ public class Tests
             
             10000  
          """;
-
-        var actual = DayOne.Solve(input.Split(Environment.NewLine));
+    
+    [Test]
+    public void TotalCaloriesCarriedByElfWithMost_GivenInputsFromExample_SolvesCorrectly()
+    {
+        var actual = DayOne.TotalCaloriesCarriedByElfWithMost(Input.Split(Environment.NewLine));
         const int expected = 24000;
+
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void TotalCaloriesCarriedByTopThreeElves_GivenInputsFromExample_SolvesCorrectly()
+    {
+        var actual = DayOne.TotalCaloriesCarriedByTopThreeElves(Input.Split(Environment.NewLine));
+        const int expected = 45000;
 
         Assert.That(actual, Is.EqualTo(expected));
     }
