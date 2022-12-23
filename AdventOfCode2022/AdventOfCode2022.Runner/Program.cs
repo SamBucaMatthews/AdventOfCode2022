@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using AdventOfCode2022.Solutions.DayOne;
+using AdventOfCode2022.Solutions.DayThree;
 using AdventOfCode2022.Solutions.DayTwo;
 
 IEnumerable<string> GetInput(string dayName)
@@ -12,10 +13,10 @@ IEnumerable<string> GetInput(string dayName)
 
 void SolveDayOne()
 {
-    var i = DayOne.TotalCaloriesCarriedByElfWithMost(GetInput(nameof(DayOne)));
+    var dayOneSolutionPartOne = DayOne.TotalCaloriesCarriedByElfWithMost(GetInput(nameof(DayOne)));
     var dayOneSolutionPartTwo = DayOne.TotalCaloriesCarriedByTopThreeElves(GetInput(nameof(DayOne)));
 
-    Console.WriteLine($"Day one solution (Part One): {i}");
+    Console.WriteLine($"Day one solution (Part One): {dayOneSolutionPartOne}");
     Console.WriteLine($"Day one solution (Part Two): {dayOneSolutionPartTwo}");
 }
 
@@ -56,5 +57,13 @@ void SolveDayTwo()
     Console.WriteLine($"Day two solution (Part Two): {dayTwoSolutionPartTwo}");
 }
 
+void SolveDayThree()
+{
+    var dayThreeSolutionPartOne = DayThree.CalculatePriorities(GetInput(nameof(DayThree)));
+
+    Console.WriteLine($"Day three solution (Part One): {dayThreeSolutionPartOne}");
+}
+
 SolveDayOne();
 SolveDayTwo();
+SolveDayThree();

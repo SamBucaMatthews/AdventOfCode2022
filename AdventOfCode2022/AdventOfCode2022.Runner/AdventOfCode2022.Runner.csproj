@@ -16,6 +16,10 @@
         <Link>Inputs\DayOne\input.txt</Link>
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <Content Include="..\Inputs\DayThree\input.txt">
+        <Link>Inputs\DayThree\input.txt</Link>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
       <Content Include="..\Inputs\DayTwo\input.txt">
         <Link>Inputs\DayTwo\input.txt</Link>
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
