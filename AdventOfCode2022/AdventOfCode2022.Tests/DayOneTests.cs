@@ -1,4 +1,5 @@
 using AdventOfCode2022.Solutions;
+using AdventOfCode2022.Solutions.DayOne;
 
 namespace AdventOfCode2022.Tests;
 

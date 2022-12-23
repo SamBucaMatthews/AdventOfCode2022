@@ -1,9 +1,8 @@
-﻿namespace AdventOfCode2022.Solutions;
+﻿namespace AdventOfCode2022.Solutions.DayOne;
 
-/*
- * https://adventofcode.com/2022/day/1
- */
-
+/// <summary>
+/// https://adventofcode.com/2022/day/1
+/// </summary>
 public static class DayOne
 {
     /// <summary>

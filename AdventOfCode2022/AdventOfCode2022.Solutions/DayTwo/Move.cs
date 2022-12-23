@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2022.Solutions;
+﻿namespace AdventOfCode2022.Solutions.DayTwo;
 
 public abstract class Move
 {
@@ -16,5 +16,7 @@ public abstract class Move
         PointsForPlaying = pointsForPlaying;
     }
 
-    public abstract bool Beats(Type typeToBeat);
+    public abstract Type Beats();
+
+    public abstract Type LosesTo();
 }

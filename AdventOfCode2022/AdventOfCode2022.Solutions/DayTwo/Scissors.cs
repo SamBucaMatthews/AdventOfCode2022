@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2022.Solutions;
+﻿namespace AdventOfCode2022.Solutions.DayTwo;
 
 public class Scissors : Move
 {
@@ -10,5 +10,7 @@ public class Scissors : Move
     {
     }
 
-    public override bool Beats(Type typeToBeat) => typeToBeat == typeof(Paper);
+    public override Type Beats() => typeof(Paper);
+
+    public override Type LosesTo() => typeof(Rock);
 }

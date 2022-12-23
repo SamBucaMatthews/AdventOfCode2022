@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using AdventOfCode2022.Solutions;
+using AdventOfCode2022.Solutions.DayOne;
+using AdventOfCode2022.Solutions.DayTwo;
 
 IEnumerable<string> GetInput(string dayName)
 {
@@ -35,18 +36,25 @@ void SolveDayTwo()
         "Z",
         3);
 
+    var winLoseDrawDecryptionConfig = new WinLoseDrawDecryptionConfig(
+        "Z",
+        "X",
+        "Y");
+
     var dayTwo = new DayTwo(
         rockConfig,
         paperConfig,
         scissorsConfig,
+        winLoseDrawDecryptionConfig,
         6,
         3);
 
-    var dayTwoSolutionPartOne = dayTwo.TotalPointsForStrategy(GetInput(nameof(DayTwo)));
+    var dayTwoSolutionPartOne = dayTwo.CalculateTotalPointsUsingSecondColumnAsMove(GetInput(nameof(DayTwo)));
+    var dayTwoSolutionPartTwo = dayTwo.CalculateTotalPointsUsingSecondColumnAsResult(GetInput(nameof(DayTwo)));
 
     Console.WriteLine($"Day two solution (Part One): {dayTwoSolutionPartOne}");
+    Console.WriteLine($"Day two solution (Part Two): {dayTwoSolutionPartTwo}");
 }
-
 
 SolveDayOne();
 SolveDayTwo();

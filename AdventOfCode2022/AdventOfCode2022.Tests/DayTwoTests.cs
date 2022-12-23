@@ -1,4 +1,4 @@
-﻿using AdventOfCode2022.Solutions;
+﻿using AdventOfCode2022.Solutions.DayTwo;
 
 namespace AdventOfCode2022.Tests;
 
@@ -20,6 +20,10 @@ public class DayTwoTests
     private const int PointsForDrawing = 3;
     private const int PointsForLosing = 0;
     
+    private const string Win = "Z";
+    private const string Lose = "X";
+    private const string Draw = "Y";
+
     private static readonly Rock RockConfig = new(
         RockPlayerOne,
         RockPlayerTwo,
@@ -34,6 +38,11 @@ public class DayTwoTests
         ScissorsPlayerOne,
         ScissorsPlayerTwo,
         PointsForPlayingScissors);
+
+    private static readonly WinLoseDrawDecryptionConfig WinLoseDrawDecryptionConfig = new(
+        Win,
+        Lose,
+        Draw);
     
     private static readonly string[] ExampleInput =
     {
@@ -58,15 +67,16 @@ public class DayTwoTests
             RockConfig,
             PaperConfig,
             ScissorsConfig,
+            WinLoseDrawDecryptionConfig,
             PointsForWinning,
             PointsForDrawing);
     }
     
     [Test]
-    public void TotalPointsForStrategy_GivenInputsFromExample_SolvesCorrectly()
+    public void CalculateTotalPointsUsingSecondColumnAsMove_GivenInputsFromExample_SolvesCorrectly()
     {
         const int expected = 15;
-        var actual = _dayTwo.TotalPointsForStrategy(ExampleInput);
+        var actual = _dayTwo.CalculateTotalPointsUsingSecondColumnAsMove(ExampleInput);
 
         Assert.That(actual, Is.EqualTo(expected));
     }
@@ -74,7 +84,7 @@ public class DayTwoTests
     [TestCase(RockPlayerOne, ScissorsPlayerTwo, PointsForPlayingScissors)]
     [TestCase(PaperPlayerOne, RockPlayerTwo, PointsForPlayingRock)]
     [TestCase(ScissorsPlayerOne, PaperPlayerTwo, PointsForPlayingPaper)]
-    public void TotalPointsForStrategy_GivenAllSameChoiceAndAllLosses_ReturnsPointsForPlayingOnly(
+    public void CalculateTotalPointsUsingSecondColumnAsMove_GivenAllSameChoiceAndAllLosses_ReturnsPointsForPlayingOnly(
         string playerOneChoice,
         string playerTwoChoice,
         int pointsForPlaying)
@@ -87,13 +97,13 @@ public class DayTwoTests
         };
         
         var expected = (PointsForLosing + pointsForPlaying) * 3;
-        var actual = _dayTwo.TotalPointsForStrategy(input);
+        var actual = _dayTwo.CalculateTotalPointsUsingSecondColumnAsMove(input);
 
         Assert.That(actual, Is.EqualTo(expected));
     }
     
     [TestCaseSource(nameof(MoveConfigs))]
-    public void TotalPointsForStrategy_GivenAllSameChoiceAndAllDraws_ReturnsPointsForPlayingAndPointsForDrawing(
+    public void CalculateTotalPointsUsingSecondColumnAsMove_GivenAllSameChoiceAndAllDraws_ReturnsPointsForPlayingAndPointsForDrawing(
         Move move)
     {
         var input = new[]
@@ -104,7 +114,7 @@ public class DayTwoTests
         };
         
         var expected = (PointsForDrawing + move.PointsForPlaying) * 3;
-        var actual = _dayTwo.TotalPointsForStrategy(input);
+        var actual = _dayTwo.CalculateTotalPointsUsingSecondColumnAsMove(input);
 
         Assert.That(actual, Is.EqualTo(expected));
     }
@@ -112,7 +122,7 @@ public class DayTwoTests
     [TestCase(RockPlayerOne, PaperPlayerTwo, PointsForPlayingPaper)]
     [TestCase(PaperPlayerOne, ScissorsPlayerTwo, PointsForPlayingScissors)]
     [TestCase(ScissorsPlayerOne, RockPlayerTwo, PointsForPlayingRock)]
-    public void TotalPointsForStrategy_GivenAllSameChoiceAndAllWins_ReturnsPointsForPlayingAndPointsForWinning(
+    public void CalculateTotalPointsUsingSecondColumnAsMove_GivenAllSameChoiceAndAllWins_ReturnsPointsForPlayingAndPointsForWinning(
         string playerOneChoice,
         string playerTwoChoice,
         int pointsForPlaying)
@@ -125,8 +135,77 @@ public class DayTwoTests
         };
         
         var expected = (PointsForWinning + pointsForPlaying) * 3;
-        var actual = _dayTwo.TotalPointsForStrategy(input);
+        var actual = _dayTwo.CalculateTotalPointsUsingSecondColumnAsMove(input);
 
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void CalculateTotalPointsUsingSecondColumnAsResult_GivenInputsFromExample_SolvesCorrectly()
+    {
+        const int expected = 12;
+        var actual = _dayTwo.CalculateTotalPointsUsingSecondColumnAsResult(ExampleInput);
+
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+
+    [TestCase(RockPlayerOne, PointsForPlayingScissors)]
+    [TestCase(PaperPlayerOne,PointsForPlayingRock)]
+    [TestCase(ScissorsPlayerOne,PointsForPlayingPaper)]
+    public void CalculateTotalPointsUsingSecondColumnAsResult_GivenAllSameMovesAndAllLosses_ReturnsPointsForPlaying(
+        string playerOneChoice,
+        int pointsForPlaying)
+    {
+        var input = new[]
+        {
+            $"{playerOneChoice} {Lose}",
+            $"{playerOneChoice} {Lose}",
+            $"{playerOneChoice} {Lose}",
+        };
+        
+        var expected = (PointsForLosing + pointsForPlaying) * 3;
+        var actual = _dayTwo.CalculateTotalPointsUsingSecondColumnAsResult(input);
+        
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+    
+    [TestCase(RockPlayerOne, PointsForPlayingPaper)]
+    [TestCase(PaperPlayerOne,PointsForPlayingScissors)]
+    [TestCase(ScissorsPlayerOne,PointsForPlayingRock)]
+    public void CalculateTotalPointsUsingSecondColumnAsResult_GivenAllSameMovesAndAllWins_ReturnsPointsForPlaying(
+        string playerOneChoice,
+        int pointsForPlaying)
+    {
+        var input = new[]
+        {
+            $"{playerOneChoice} {Win}",
+            $"{playerOneChoice} {Win}",
+            $"{playerOneChoice} {Win}",
+        };
+        
+        var expected = (PointsForWinning + pointsForPlaying) * 3;
+        var actual = _dayTwo.CalculateTotalPointsUsingSecondColumnAsResult(input);
+        
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+    
+    [TestCase(RockPlayerOne, PointsForPlayingRock)]
+    [TestCase(PaperPlayerOne,PointsForPlayingPaper)]
+    [TestCase(ScissorsPlayerOne,PointsForPlayingScissors)]
+    public void CalculateTotalPointsUsingSecondColumnAsResult_GivenAllSameMovesAndAllDraws_ReturnsPointsForPlaying(
+        string playerOneChoice,
+        int pointsForPlaying)
+    {
+        var input = new[]
+        {
+            $"{playerOneChoice} {Draw}",
+            $"{playerOneChoice} {Draw}",
+            $"{playerOneChoice} {Draw}",
+        };
+        
+        var expected = (PointsForDrawing + pointsForPlaying) * 3;
+        var actual = _dayTwo.CalculateTotalPointsUsingSecondColumnAsResult(input);
+        
         Assert.That(actual, Is.EqualTo(expected));
     }
 }
