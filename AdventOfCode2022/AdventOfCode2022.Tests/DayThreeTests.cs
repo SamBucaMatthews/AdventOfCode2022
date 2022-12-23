@@ -20,6 +20,14 @@ public class DayThreeTests
         var actual = DayThree.CalculatePriorities(ExampleInput);
         
         Assert.That(actual, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CalculatePrioritiesOfEachElfGroup_GivenInputsFromExample_SolvesCorrectly()
+    {
+        const int expected = 70;
+        var actual = DayThree.CalculatePrioritiesOfEachElfGroup(ExampleInput);
         
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

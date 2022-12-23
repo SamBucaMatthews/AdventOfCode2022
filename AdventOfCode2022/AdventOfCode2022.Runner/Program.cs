@@ -60,8 +60,10 @@ void SolveDayTwo()
 void SolveDayThree()
 {
     var dayThreeSolutionPartOne = DayThree.CalculatePriorities(GetInput(nameof(DayThree)));
+    var dayThreeSolutionPartTwo = DayThree.CalculatePrioritiesOfEachElfGroup(GetInput(nameof(DayThree)));
 
     Console.WriteLine($"Day three solution (Part One): {dayThreeSolutionPartOne}");
+    Console.WriteLine($"Day three solution (Part Two): {dayThreeSolutionPartTwo}");
 }
 
 SolveDayOne();

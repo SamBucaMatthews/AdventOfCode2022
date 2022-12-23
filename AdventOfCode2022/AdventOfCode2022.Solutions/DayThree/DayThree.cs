@@ -16,6 +16,20 @@ public static class DayThree
 
         return priority;
     }
+    
+    public static int CalculatePrioritiesOfEachElfGroup(IEnumerable<string> rucksackInputs)
+    {
+        const int groupSize = 3;
+        
+        var elfGroups = rucksackInputs
+            .Select((x, i) => new { Index = i, Value = x })
+            .GroupBy(i => i.Index / groupSize)
+            .Select(x => x.Select(v => new RuckSack(v.Value)).ToList())
+            .Select(x => new ElfGroup(x))
+            .ToList();
+
+        return elfGroups.Sum(elfGroup => CalculatePriority(elfGroup.BadgeType));
+    }
 
     private static int CalculatePriority(string itemType)
     {
