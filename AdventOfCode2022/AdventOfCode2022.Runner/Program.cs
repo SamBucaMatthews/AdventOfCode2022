@@ -84,9 +84,16 @@ void SolveDayFour()
 
 void SolveDayFive()
 {
-    var dayFiveSolutionPartOne = DayFive.GetCratesAtTopOfEachStack(GetInput(nameof(DayFive)).ToList());
+    var dayFiveSolutionPartOne = DayFive.GetCratesAtTopOfEachStack(
+        GetInput(nameof(DayFive)).ToList(),
+        CraneType.CrateMover9000);
+    
+    var dayFiveSolutionPartTwo = DayFive.GetCratesAtTopOfEachStack(
+        GetInput(nameof(DayFive)).ToList(),
+        CraneType.CrateMover9001);
 
     Console.WriteLine($"Day five solution (Part One): {dayFiveSolutionPartOne}");
+    Console.WriteLine($"Day five solution (Part Two): {dayFiveSolutionPartTwo}");
 }
 
 SolveDayOne();

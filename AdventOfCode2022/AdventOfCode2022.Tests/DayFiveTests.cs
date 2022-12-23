@@ -16,11 +16,13 @@ public class DayFiveTests
         "move 1 from 1 to 2",
     };
 
-    [Test]
-    public void GetCratesAtTopOfEachStack_GivenExampleInput_SolvesCorrectly()
+    [TestCase(CraneType.CrateMover9000, "CMZ")]
+    [TestCase(CraneType.CrateMover9001, "MCD")]
+    public void GetCratesAtTopOfEachStack_GivenExampleInputAndCrateMoverType_SolvesCorrectly(
+        CraneType craneType,
+        string expected)
     {
-        const string expected = "CMZ";
-        var actual = DayFive.GetCratesAtTopOfEachStack(ExampleInput);
+        var actual = DayFive.GetCratesAtTopOfEachStack(ExampleInput, craneType);
         
         Assert.That(actual, Is.EqualTo(expected));
     }
