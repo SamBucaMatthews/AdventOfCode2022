@@ -3,6 +3,7 @@
 using AdventOfCode2022.Solutions.DayFive;
 using AdventOfCode2022.Solutions.DayFour;
 using AdventOfCode2022.Solutions.DayOne;
+using AdventOfCode2022.Solutions.DaySix;
 using AdventOfCode2022.Solutions.DayThree;
 using AdventOfCode2022.Solutions.DayTwo;
 
@@ -96,8 +97,18 @@ void SolveDayFive()
     Console.WriteLine($"Day five solution (Part Two): {dayFiveSolutionPartTwo}");
 }
 
+void SolveDaySix()
+{
+    var daySixSolutionPartOne = DaySix.FindStartOfPacketMarker(GetInput(nameof(DaySix)).First());
+
+    Console.WriteLine($"Day six solution (Part One): {daySixSolutionPartOne}");
+}
+
 SolveDayOne();
 SolveDayTwo();
 SolveDayThree();
 SolveDayFour();
 SolveDayFive();
+SolveDaySix();
+
+

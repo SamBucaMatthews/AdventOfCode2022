@@ -1,13 +1,5 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\sam.matthews\AppData\Local\JetBrains\Rider2022.2\resharper-host\temp\Rider\vAny\CoverageData\_AdventOfCode2022.465570673\Snapshot\snapshot.utdcvr</s:String>
+	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=495211ac_002Dc4bd_002D4fb4_002Dbaee_002D65b1426c920e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="METHOD" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.Tests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.DayTwoTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.DayThreeTests.CalculatePriorities_GivenInputsFromExample_SolvesCorrectly&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.DayThreeTests.CalculatePrioritiesOfEachElfGroup_GivenInputsFromExample_SolvesCorrectly&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.DayFourTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.DayFiveTests.GetCratesAtTopOfEachStack_GivenExampleInput_SolvesCorrectly&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.DayFiveTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Project Location="D:\Code\AdventOfCode2022\AdventOfCode2022\AdventOfCode2022.Tests" Presentation="&amp;lt;AdventOfCode2022.Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
