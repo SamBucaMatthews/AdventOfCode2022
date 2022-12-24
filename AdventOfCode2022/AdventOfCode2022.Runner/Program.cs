@@ -99,9 +99,16 @@ void SolveDayFive()
 
 void SolveDaySix()
 {
-    var daySixSolutionPartOne = DaySix.FindStartOfPacketMarker(GetInput(nameof(DaySix)).First());
+    var daySixSolutionPartOne = DaySix.FindStartOfMarker(
+        GetInput(nameof(DaySix)).First(),
+        4);
+    
+    var daySixSolutionPartTwo = DaySix.FindStartOfMarker(
+        GetInput(nameof(DaySix)).First(),
+        14);
 
     Console.WriteLine($"Day six solution (Part One): {daySixSolutionPartOne}");
+    Console.WriteLine($"Day six solution (Part Two): {daySixSolutionPartTwo}");
 }
 
 SolveDayOne();

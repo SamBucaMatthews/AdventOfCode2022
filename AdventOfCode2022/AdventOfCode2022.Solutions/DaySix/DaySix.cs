@@ -2,16 +2,15 @@
 
 public static class DaySix
 {
-    public static int FindStartOfPacketMarker(string input)
+    public static int FindStartOfMarker(string input, int distinctCharacters)
     {
         var sliceStart = 0;
-        const int sliceLength = 4;
 
-        while (input.Substring(sliceStart, sliceLength).Distinct().Count() != 4)
+        while (input.Substring(sliceStart, distinctCharacters).Distinct().Count() != distinctCharacters)
         {
             sliceStart++;
         }
 
-        return sliceStart + sliceLength;
+        return sliceStart + distinctCharacters;
     }
 }

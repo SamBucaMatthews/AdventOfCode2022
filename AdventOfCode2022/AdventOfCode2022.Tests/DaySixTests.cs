@@ -9,9 +9,25 @@ public class DaySixTests
     [TestCase("nppdvjthqldpwncqszvftbrmjlhg", 6)]
     [TestCase("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 10)]
     [TestCase("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 11)]
-    public void FindStartOfPacketMarker_GivenInputsFromExample_SolvesCorrectly(string input, int firstMarkerAfter)
+    public void FindStartOfMarker_GivenInputsFromExampleAndFourCharacters_SolvesCorrectly(
+        string input,
+        int firstMarkerAfter)
     {
-        var actual = DaySix.FindStartOfPacketMarker(input);
+        var actual = DaySix.FindStartOfMarker(input, 4);
+        
+        Assert.That(actual, Is.EqualTo(firstMarkerAfter));
+    }
+    
+    [TestCase("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 19)]
+    [TestCase("bvwbjplbgvbhsrlpgdmjqwftvncz", 23)]
+    [TestCase("nppdvjthqldpwncqszvftbrmjlhg", 23)]
+    [TestCase("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 29)]
+    [TestCase("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 26)]
+    public void FindStartOfMarker_GivenInputsFromExampleAndFourteenCharacters_SolvesCorrectly(
+        string input,
+        int firstMarkerAfter)
+    {
+        var actual = DaySix.FindStartOfMarker(input, 14);
         
         Assert.That(actual, Is.EqualTo(firstMarkerAfter));
     }
