@@ -3,6 +3,7 @@
 using AdventOfCode2022.Solutions.DayFive;
 using AdventOfCode2022.Solutions.DayFour;
 using AdventOfCode2022.Solutions.DayOne;
+using AdventOfCode2022.Solutions.DaySeven;
 using AdventOfCode2022.Solutions.DaySix;
 using AdventOfCode2022.Solutions.DayThree;
 using AdventOfCode2022.Solutions.DayTwo;
@@ -111,11 +112,17 @@ void SolveDaySix()
     Console.WriteLine($"Day six solution (Part Two): {daySixSolutionPartTwo}");
 }
 
+void SolveDaySeven()
+{
+    var daySevenSolutionPartOne = DaySeven.FindSumOfTotalMatchingDirectories(GetInput(nameof(DaySeven)));
+    
+    Console.WriteLine($"Day seven solution (Part One): {daySevenSolutionPartOne}");
+}
+
 SolveDayOne();
 SolveDayTwo();
 SolveDayThree();
 SolveDayFour();
 SolveDayFive();
 SolveDaySix();
-
-
+SolveDaySeven();
