@@ -115,8 +115,10 @@ void SolveDaySix()
 void SolveDaySeven()
 {
     var daySevenSolutionPartOne = DaySeven.FindSumOfTotalMatchingDirectories(GetInput(nameof(DaySeven)));
+    var daySevenSolutionPartTwo = DaySeven.FindSizeOfDirectoryToDelete(GetInput(nameof(DaySeven)));
     
     Console.WriteLine($"Day seven solution (Part One): {daySevenSolutionPartOne}");
+    Console.WriteLine($"Day seven solution (Part Two): {daySevenSolutionPartTwo}");
 }
 
 SolveDayOne();

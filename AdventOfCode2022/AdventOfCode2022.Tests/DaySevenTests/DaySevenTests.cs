@@ -32,10 +32,19 @@ public class DaySevenTests
     };
     
     [Test]
-    public void FindSumOfTotalMatchingDirectories_GivenInputsFromExampleAnd_SolvesCorrectly()
+    public void FindSumOfTotalMatchingDirectories_GivenInputsFromExample_SolvesCorrectly()
     {
         const int expected = 95437;
         var actual = DaySeven.FindSumOfTotalMatchingDirectories(ExampleInput);
+        
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void FindSizeDirectoryToDelete_GivenInputsFromExample_SolvesCorrectly()
+    {
+        const int expected = 24933642;
+        var actual = DaySeven.FindSizeOfDirectoryToDelete(ExampleInput);
         
         Assert.That(actual, Is.EqualTo(expected));
     }
