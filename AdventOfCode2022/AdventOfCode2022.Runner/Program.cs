@@ -124,10 +124,11 @@ void SolveDaySeven()
 
 void SolveDayEight()
 {
-    var dayEight = new DayEight(GetInput(nameof(DayEight)).ToArray());
-    var dayEightSolutionPartOne = dayEight.CountVisibleTrees();
+    var dayEightSolutionPartOne = DayEight.CountVisibleTrees(GetInput(nameof(DayEight)).ToArray());
+    var dayEightSolutionPartTwo = DayEight.GetMaxScenicScore(GetInput(nameof(DayEight)).ToArray());
     
     Console.WriteLine($"Day eight solution (Part One): {dayEightSolutionPartOne}");
+    Console.WriteLine($"Day eight solution (Part Two): {dayEightSolutionPartTwo}");
 }
 
 SolveDayOne();

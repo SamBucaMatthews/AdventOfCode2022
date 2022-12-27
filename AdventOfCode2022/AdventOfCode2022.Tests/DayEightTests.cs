@@ -18,9 +18,7 @@ public class DayEightTests
     {
         const int expected = 21;
 
-        var dayEight = new DayEight(ExampleInput);
-
-        var actual = dayEight.CountVisibleTrees();
+        var actual = DayEight.CountVisibleTrees(ExampleInput);
         
         Assert.That(actual, Is.EqualTo(expected));
     }
@@ -37,9 +35,7 @@ public class DayEightTests
 
         const int expected = 9;
 
-        var dayEight = new DayEight(input);
-
-        var actual = dayEight.CountVisibleTrees();
+        var actual = DayEight.CountVisibleTrees(input);
 
         Assert.That(actual, Is.EqualTo(expected));
     }
@@ -56,9 +52,7 @@ public class DayEightTests
 
         const int expected = 8;
 
-        var dayEight = new DayEight(input);
-
-        var actual = dayEight.CountVisibleTrees();
+        var actual = DayEight.CountVisibleTrees(input);
 
         Assert.That(actual, Is.EqualTo(expected));
     }
@@ -75,9 +69,7 @@ public class DayEightTests
 
         const int expected = 9;
 
-        var dayEight = new DayEight(input);
-
-        var actual = dayEight.CountVisibleTrees();
+        var actual = DayEight.CountVisibleTrees(input);
 
         Assert.That(actual, Is.EqualTo(expected));
     }
@@ -94,9 +86,7 @@ public class DayEightTests
 
         const int expected = 9;
 
-        var dayEight = new DayEight(input);
-
-        var actual = dayEight.CountVisibleTrees();
+        var actual = DayEight.CountVisibleTrees(input);
 
         Assert.That(actual, Is.EqualTo(expected));
     }
@@ -113,9 +103,7 @@ public class DayEightTests
 
         const int expected = 9;
 
-        var dayEight = new DayEight(input);
-
-        var actual = dayEight.CountVisibleTrees();
+        var actual = DayEight.CountVisibleTrees(input);
 
         Assert.That(actual, Is.EqualTo(expected));
     }
@@ -132,9 +120,7 @@ public class DayEightTests
 
         const int expected = 9;
 
-        var dayEight = new DayEight(input);
-
-        var actual = dayEight.CountVisibleTrees();
+        var actual = DayEight.CountVisibleTrees(input);
 
         Assert.That(actual, Is.EqualTo(expected));
     }
@@ -152,9 +138,17 @@ public class DayEightTests
 
         const int expected = 16;
 
-        var dayEight = new DayEight(input);
+        var actual = DayEight.CountVisibleTrees(input);
 
-        var actual = dayEight.CountVisibleTrees();
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void GetMaxScenicScore_GivenInputsFromExample_SolvesCorrectly()
+    {
+        const int expected = 8;
+
+        var actual = DayEight.GetMaxScenicScore(ExampleInput);
 
         Assert.That(actual, Is.EqualTo(expected));
     }
