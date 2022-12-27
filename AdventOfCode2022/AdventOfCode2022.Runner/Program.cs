@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using AdventOfCode2022.Solutions.DayEight;
 using AdventOfCode2022.Solutions.DayFive;
 using AdventOfCode2022.Solutions.DayFour;
 using AdventOfCode2022.Solutions.DayOne;
@@ -121,6 +122,14 @@ void SolveDaySeven()
     Console.WriteLine($"Day seven solution (Part Two): {daySevenSolutionPartTwo}");
 }
 
+void SolveDayEight()
+{
+    var dayEight = new DayEight(GetInput(nameof(DayEight)).ToArray());
+    var dayEightSolutionPartOne = dayEight.CountVisibleTrees();
+    
+    Console.WriteLine($"Day eight solution (Part One): {dayEightSolutionPartOne}");
+}
+
 SolveDayOne();
 SolveDayTwo();
 SolveDayThree();
@@ -128,3 +137,4 @@ SolveDayFour();
 SolveDayFive();
 SolveDaySix();
 SolveDaySeven();
+SolveDayEight();

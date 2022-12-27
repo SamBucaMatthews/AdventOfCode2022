@@ -12,6 +12,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Content Include="..\Inputs\DayEight\input.txt">
+        <Link>Inputs\DayEight\input.txt</Link>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
       <Content Include="..\Inputs\DayFive\input.txt">
         <Link>Inputs\DayFive\input.txt</Link>
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
