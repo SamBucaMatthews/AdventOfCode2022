@@ -5,25 +5,29 @@ using AdventOfCode2022.Solutions.DayNine;
 public class RopeTests
 {
 
-    private static readonly List<(string instruction, Coordinate headPosition, Coordinate tailPosition)> ExampleInput =
-        new()
+    private static readonly List<(MovementDirection direction, int steps, Coordinate headPosition, Coordinate tailPosition)>
+        ExampleInput = new()
         {
-            ("R 4", new Coordinate { X = 4, Y = 0 }, new Coordinate { X = 3, Y = 0 }),
-            ("U 4", new Coordinate { X = 4, Y = -4 }, new Coordinate { X = 4, Y = -3 }),
-            ("L 3", new Coordinate { X = 1, Y = -4 }, new Coordinate { X = 2, Y = -4 }),
-            ("D 1", new Coordinate { X = 1, Y = -3 }, new Coordinate { X = 2, Y = -4 }),
-            ("R 4", new Coordinate { X = 5, Y = -3 }, new Coordinate { X = 4, Y = -3 }),
-            ("D 1", new Coordinate { X = 5, Y = -2 }, new Coordinate { X = 4, Y = -3 }),
-            ("L 5", new Coordinate { X = 0, Y = -2 }, new Coordinate { X = 1, Y = -2 }),
-            ("R 2", new Coordinate { X = 2, Y = -2 }, new Coordinate { X = 1, Y = -2 }),
+            (MovementDirection.Right, 4, new Coordinate { X = 4, Y = 0 }, new Coordinate { X = 3, Y = 0 }),
+            (MovementDirection.Up, 4, new Coordinate { X = 4, Y = -4 }, new Coordinate { X = 4, Y = -3 }),
+            (MovementDirection.Left, 3, new Coordinate { X = 1, Y = -4 }, new Coordinate { X = 2, Y = -4 }),
+            (MovementDirection.Down, 1, new Coordinate { X = 1, Y = -3 }, new Coordinate { X = 2, Y = -4 }),
+            (MovementDirection.Right, 4, new Coordinate { X = 5, Y = -3 }, new Coordinate { X = 4, Y = -3 }),
+            (MovementDirection.Down, 1, new Coordinate { X = 5, Y = -2 }, new Coordinate { X = 4, Y = -3 }),
+            (MovementDirection.Left, 5, new Coordinate { X = 0, Y = -2 }, new Coordinate { X = 1, Y = -2 }),
+            (MovementDirection.Right, 2, new Coordinate { X = 2, Y = -2 }, new Coordinate { X = 1, Y = -2 }),
         };
 
-    private Rope _rope = null!;
+    private RopeSegment _headSegment = null!;
+    private RopeSegment _tailSegment = null!;
 
     [SetUp]
     public void SetUp()
     {
-        _rope = new Rope();
+        _headSegment = new RopeSegment();
+        _tailSegment = new RopeSegment();
+
+        _headSegment.Append(_tailSegment);
     }
 
     [Test]
@@ -31,27 +35,15 @@ public class RopeTests
     {
         foreach (var input in ExampleInput)
         {
-            var moveResults = _rope.Move(input.instruction).ToList();
+            _headSegment.Move(input.direction, input.steps);
 
             Assert.Multiple(() =>
             {
-                Assert.That(moveResults.Last().HeadPosition, Is.EqualTo(input.headPosition));
-                Assert.That(moveResults.Last().TailPosition, Is.EqualTo(input.tailPosition));
+                Assert.That(_headSegment.Position, Is.EqualTo(input.headPosition));
+                Assert.That(_tailSegment.Position, Is.EqualTo(input.tailPosition));
             });
         }
     }
-
-    [Test]
-    public void Move_GivenInvalidInstruction_ThrowsInvalidArgumentException() =>
-        Assert.That(
-            () => _rope.Move("W 3").ToList(), 
-            Throws.TypeOf<ArgumentException>());
-
-    [Test]
-    public void Move_GivenInstructionWithInvalidSteps_ThrowsInvalidArgumentException() =>
-        Assert.That(
-            () => _rope.Move("U").ToList(), 
-            Throws.TypeOf<ArgumentException>());
     
     [TestCase(1, -1, 0)]
     [TestCase(2, -2, -1)]
@@ -74,12 +66,12 @@ public class RopeTests
             Y = expectedTailPositionY,
         };
 
-        var moveResults = _rope.Move($"U {steps}").ToList();
+        _headSegment.Move(MovementDirection.Up, steps);
 
         Assert.Multiple(() =>
         {
-            Assert.That(moveResults.Last().HeadPosition, Is.EqualTo(expectedHeadPosition));
-            Assert.That(moveResults.Last().TailPosition, Is.EqualTo(expectedTailPosition));
+            Assert.That(_headSegment.Position, Is.EqualTo(expectedHeadPosition));
+            Assert.That(_tailSegment.Position, Is.EqualTo(expectedTailPosition));
         });
     }
     
@@ -104,12 +96,12 @@ public class RopeTests
             Y = expectedTailPositionY,
         };
 
-        var moveResults = _rope.Move($"D {steps}").ToList();
+        _headSegment.Move(MovementDirection.Down, steps);
 
         Assert.Multiple(() =>
         {
-            Assert.That(moveResults.Last().HeadPosition, Is.EqualTo(expectedHeadPosition));
-            Assert.That(moveResults.Last().TailPosition, Is.EqualTo(expectedTailPosition));
+            Assert.That(_headSegment.Position, Is.EqualTo(expectedHeadPosition));
+            Assert.That(_tailSegment.Position, Is.EqualTo(expectedTailPosition));
         });
     }
     
@@ -134,12 +126,12 @@ public class RopeTests
             Y = 0,
         };
 
-        var moveResults = _rope.Move($"L {steps}").ToList();
+        _headSegment.Move(MovementDirection.Left, steps);
 
         Assert.Multiple(() =>
         {
-            Assert.That(moveResults.Last().HeadPosition, Is.EqualTo(expectedHeadPosition));
-            Assert.That(moveResults.Last().TailPosition, Is.EqualTo(expectedTailPosition));
+            Assert.That(_headSegment.Position, Is.EqualTo(expectedHeadPosition));
+            Assert.That(_tailSegment.Position, Is.EqualTo(expectedTailPosition));
         });
     }
     
@@ -164,20 +156,20 @@ public class RopeTests
             Y = 0,
         };
 
-        var moveResults = _rope.Move($"R {steps}").ToList();
+        _headSegment.Move(MovementDirection.Right, steps);
 
         Assert.Multiple(() =>
         {
-            Assert.That(moveResults.Last().HeadPosition, Is.EqualTo(expectedHeadPosition));
-            Assert.That(moveResults.Last().TailPosition, Is.EqualTo(expectedTailPosition));
+            Assert.That(_headSegment.Position, Is.EqualTo(expectedHeadPosition));
+            Assert.That(_tailSegment.Position, Is.EqualTo(expectedTailPosition));
         });
     }
 
     [Test]
-    public void Move_GivenDiagonalMovementToRightThenUp_MovesCorrectly()
+    public void Move_GivenDiagonalMovementRightThenUp_MovesCorrectly()
     {
-        var _ = _rope.Move("R 4").ToList();
-        var moveResults = _rope.Move("U 2").ToList();
+        _headSegment.Move(MovementDirection.Right, 4);
+        _headSegment.Move(MovementDirection.Up, 2);
 
         var expectedHeadPosition = new Coordinate
         {
@@ -191,18 +183,28 @@ public class RopeTests
             Y = -1,
         };
         
+        
+        var expectedPreviousTailPositions = new List<Coordinate>
+        {
+            new() { X = 0, Y = 0 },
+            new() { X = 1, Y = 0 },
+            new() { X = 2, Y = 0 },
+            new() { X = 3, Y = 0 },
+        };
+        
         Assert.Multiple(() =>
         {
-            Assert.That(moveResults.Last().HeadPosition, Is.EqualTo(expectedHeadPosition));
-            Assert.That(moveResults.Last().TailPosition, Is.EqualTo(expectedTailPosition));
+            Assert.That(_headSegment.Position, Is.EqualTo(expectedHeadPosition));
+            Assert.That(_tailSegment.Position, Is.EqualTo(expectedTailPosition));
+            Assert.That(_tailSegment.PreviousPositions, Is.EqualTo(expectedPreviousTailPositions));
         });
     }
     
     [Test]
     public void Move_GivenDiagonalMovementLeftThenUp_MovesCorrectly()
     {
-        var _ = _rope.Move("L 4").ToList();
-        var moveResults = _rope.Move("U 2").ToList();
+        _headSegment.Move(MovementDirection.Left, 4);
+        _headSegment.Move(MovementDirection.Up, 2);
 
         var expectedHeadPosition = new Coordinate
         {
@@ -218,16 +220,16 @@ public class RopeTests
         
         Assert.Multiple(() =>
         {
-            Assert.That(moveResults.Last().HeadPosition, Is.EqualTo(expectedHeadPosition));
-            Assert.That(moveResults.Last().TailPosition, Is.EqualTo(expectedTailPosition));
+            Assert.That(_headSegment.Position, Is.EqualTo(expectedHeadPosition));
+            Assert.That(_tailSegment.Position, Is.EqualTo(expectedTailPosition));
         });
     }
     
     [Test]
     public void Move_GivenDiagonalMovementLeftThenDown_MovesCorrectly()
     {
-        var _ = _rope.Move("L 4").ToList();
-        var moveResults = _rope.Move("D 2").ToList();
+        _headSegment.Move(MovementDirection.Left, 4);
+        _headSegment.Move(MovementDirection.Down, 2);
 
         var expectedHeadPosition = new Coordinate
         {
@@ -240,19 +242,28 @@ public class RopeTests
             X = -4,
             Y = 1,
         };
+
+        var expectedPreviousTailPositions = new List<Coordinate>
+        {
+            new() { X = 0, Y = 0 },
+            new() { X = -1, Y = 0 },
+            new() { X = -2, Y = 0 },
+            new() { X = -3, Y = 0 },
+        };
         
         Assert.Multiple(() =>
         {
-            Assert.That(moveResults.Last().HeadPosition, Is.EqualTo(expectedHeadPosition));
-            Assert.That(moveResults.Last().TailPosition, Is.EqualTo(expectedTailPosition));
+            Assert.That(_headSegment.Position, Is.EqualTo(expectedHeadPosition));
+            Assert.That(_tailSegment.Position, Is.EqualTo(expectedTailPosition));
+            Assert.That(_tailSegment.PreviousPositions, Is.EqualTo(expectedPreviousTailPositions));
         });
     }
     
     [Test]
     public void Move_GivenDiagonalMovementRightThenDown_MovesCorrectly()
     {
-        var _ = _rope.Move("R 4").ToList();
-        var moveResults = _rope.Move("D 2").ToList();
+        _headSegment.Move(MovementDirection.Right, 4);
+        _headSegment.Move(MovementDirection.Down, 2);
 
         var expectedHeadPosition = new Coordinate
         {
@@ -266,18 +277,27 @@ public class RopeTests
             Y = 1,
         };
         
+        var expectedPreviousTailPositions = new List<Coordinate>
+        {
+            new() { X = 0, Y = 0 },
+            new() { X = 1, Y = 0 },
+            new() { X = 2, Y = 0 },
+            new() { X = 3, Y = 0 },
+        };
+        
         Assert.Multiple(() =>
         {
-            Assert.That(moveResults.Last().HeadPosition, Is.EqualTo(expectedHeadPosition));
-            Assert.That(moveResults.Last().TailPosition, Is.EqualTo(expectedTailPosition));
+            Assert.That(_headSegment.Position, Is.EqualTo(expectedHeadPosition));
+            Assert.That(_tailSegment.Position, Is.EqualTo(expectedTailPosition));
+            Assert.That(_tailSegment.PreviousPositions, Is.EqualTo(expectedPreviousTailPositions));
         });
     }
     
     [Test]
     public void Move_GivenDiagonalMovementDownThenLeft_MovesCorrectly()
     {
-        var _ = _rope.Move("D 2").ToList();
-        var moveResults = _rope.Move("L 4").ToList();
+        _headSegment.Move(MovementDirection.Down, 2);
+        _headSegment.Move(MovementDirection.Left, 4);
 
         var expectedHeadPosition = new Coordinate
         {
@@ -291,18 +311,28 @@ public class RopeTests
             Y = 2,
         };
         
+        var expectedPreviousTailPositions = new List<Coordinate>
+        {
+            new() { X = 0, Y = 0 },
+            new() { X = 0, Y = 1 },
+            new() { X = -1, Y = 1 },
+            new() { X = -1, Y = 2 },
+            new() { X = -2, Y = 2 },
+        };
+        
         Assert.Multiple(() =>
         {
-            Assert.That(moveResults.Last().HeadPosition, Is.EqualTo(expectedHeadPosition));
-            Assert.That(moveResults.Last().TailPosition, Is.EqualTo(expectedTailPosition));
+            Assert.That(_headSegment.Position, Is.EqualTo(expectedHeadPosition));
+            Assert.That(_tailSegment.Position, Is.EqualTo(expectedTailPosition));
+            Assert.That(_tailSegment.PreviousPositions, Is.EqualTo(expectedPreviousTailPositions));
         });
     }
     
     [Test]
     public void Move_GivenDiagonalMovementDownThenRight_MovesCorrectly()
     {
-        var _ = _rope.Move("D 2").ToList();
-        var moveResults = _rope.Move("R 4").ToList();
+        _headSegment.Move(MovementDirection.Down, 2);
+        _headSegment.Move(MovementDirection.Right, 4);
 
         var expectedHeadPosition = new Coordinate
         {
@@ -316,18 +346,29 @@ public class RopeTests
             Y = 2,
         };
         
+                
+        var expectedPreviousTailPositions = new List<Coordinate>
+        {
+            new() { X = 0, Y = 0 },
+            new() { X = 0, Y = 1 },
+            new() { X = 1, Y = 1 },
+            new() { X = 1, Y = 2 },
+            new() { X = 2, Y = 2 },
+        };
+        
         Assert.Multiple(() =>
         {
-            Assert.That(moveResults.Last().HeadPosition, Is.EqualTo(expectedHeadPosition));
-            Assert.That(moveResults.Last().TailPosition, Is.EqualTo(expectedTailPosition));
+            Assert.That(_headSegment.Position, Is.EqualTo(expectedHeadPosition));
+            Assert.That(_tailSegment.Position, Is.EqualTo(expectedTailPosition));
+            Assert.That(_tailSegment.PreviousPositions, Is.EqualTo(expectedPreviousTailPositions));
         });
     }
     
     [Test]
     public void Move_GivenDiagonalMovementUpThenRight_MovesCorrectly()
     {
-        var _ = _rope.Move("U 2").ToList();
-        var moveResults = _rope.Move("R 4").ToList();
+        _headSegment.Move(MovementDirection.Up, 2);
+        _headSegment.Move(MovementDirection.Right, 4);
 
         var expectedHeadPosition = new Coordinate
         {
@@ -341,18 +382,28 @@ public class RopeTests
             Y = -2,
         };
         
+        var expectedPreviousTailPositions = new List<Coordinate>
+        {
+            new() { X = 0, Y = 0 },
+            new() { X = 0, Y = -1 },
+            new() { X = 1, Y = -1 },
+            new() { X = 1, Y = -2 },
+            new() { X = 2, Y = -2 },
+        };
+        
         Assert.Multiple(() =>
         {
-            Assert.That(moveResults.Last().HeadPosition, Is.EqualTo(expectedHeadPosition));
-            Assert.That(moveResults.Last().TailPosition, Is.EqualTo(expectedTailPosition));
+            Assert.That(_headSegment.Position, Is.EqualTo(expectedHeadPosition));
+            Assert.That(_tailSegment.Position, Is.EqualTo(expectedTailPosition));
+            Assert.That(_tailSegment.PreviousPositions, Is.EqualTo(expectedPreviousTailPositions));
         });
     }
     
     [Test]
     public void Move_GivenDiagonalMovementUpThenLeft_MovesCorrectly()
     {
-        var _ = _rope.Move("U 2").ToList();
-        var moveResults = _rope.Move("L 4").ToList();
+        _headSegment.Move(MovementDirection.Up, 2);
+        _headSegment.Move(MovementDirection.Left, 4);
 
         var expectedHeadPosition = new Coordinate
         {
@@ -366,10 +417,20 @@ public class RopeTests
             Y = -2,
         };
         
+        var expectedPreviousTailPositions = new List<Coordinate>
+        {
+            new() { X = 0, Y = 0 },
+            new() { X = 0, Y = -1 },
+            new() { X = -1, Y = -1 },
+            new() { X = -1, Y = -2 },
+            new() { X = -2, Y = -2 },
+        };
+        
         Assert.Multiple(() =>
         {
-            Assert.That(moveResults.Last().HeadPosition, Is.EqualTo(expectedHeadPosition));
-            Assert.That(moveResults.Last().TailPosition, Is.EqualTo(expectedTailPosition));
+            Assert.That(_headSegment.Position, Is.EqualTo(expectedHeadPosition));
+            Assert.That(_tailSegment.Position, Is.EqualTo(expectedTailPosition));
+            Assert.That(_tailSegment.PreviousPositions, Is.EqualTo(expectedPreviousTailPositions));
         });
     }
 }

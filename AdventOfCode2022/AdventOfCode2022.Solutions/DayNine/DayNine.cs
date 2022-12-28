@@ -4,17 +4,44 @@ public static class DayNine
 {
     public static int CountPositionsVisitedByTail(IEnumerable<string> input)
     {
-        var rope = new Rope();
+        const string up = "U";
+        const string down = "D";
+        const string left = "L";
+        const string right = "R";
 
-        var pointsTouchedByTail = new List<Coordinate>();
+        var head = new RopeSegment();
+        var tail = new RopeSegment();
+
+        head.Append(tail);
+
         foreach (var instruction in input)
         {
-            foreach (var (_, (x, y)) in rope.Move(instruction))
+            var instructionParts = instruction.Split(" ");
+
+            MovementDirection? movementDirection = instructionParts[0] switch
             {
-                pointsTouchedByTail.Add(new Coordinate { X = x, Y = y } );
+                up => MovementDirection.Up,
+                down => MovementDirection.Down,
+                left => MovementDirection.Left,
+                right => MovementDirection.Right,
+                _ => throw new ArgumentOutOfRangeException(nameof(input))
+            };
+
+            if (instructionParts.Length != 2 ||
+                !int.TryParse(instructionParts[1], out var steps))
+            {
+                throw new ArgumentException("Invalid instruction", nameof(input));
             }
+
+            head.Move(movementDirection.Value, steps);
         }
 
-        return pointsTouchedByTail.Distinct().Count();
+        var lastSegment = head;
+        while (lastSegment.NextSegment != null)
+        {
+            lastSegment = lastSegment.NextSegment;
+        }
+
+        return lastSegment.PreviousPositions.Append(lastSegment.Position).Distinct().Count();
     }
 }
