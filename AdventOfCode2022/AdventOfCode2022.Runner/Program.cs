@@ -3,6 +3,7 @@
 using AdventOfCode2022.Solutions.DayEight;
 using AdventOfCode2022.Solutions.DayFive;
 using AdventOfCode2022.Solutions.DayFour;
+using AdventOfCode2022.Solutions.DayNine;
 using AdventOfCode2022.Solutions.DayOne;
 using AdventOfCode2022.Solutions.DaySeven;
 using AdventOfCode2022.Solutions.DaySix;
@@ -131,6 +132,13 @@ void SolveDayEight()
     Console.WriteLine($"Day eight solution (Part Two): {dayEightSolutionPartTwo}");
 }
 
+void SolveDayNine()
+{
+    var dayNineSolutionPartOne = DayNine.CountPositionsVisitedByTail(GetInput(nameof(DayNine)));
+    
+    Console.WriteLine($"Day nine solution (Part One): {dayNineSolutionPartOne}");
+}
+
 SolveDayOne();
 SolveDayTwo();
 SolveDayThree();
@@ -139,3 +147,4 @@ SolveDayFive();
 SolveDaySix();
 SolveDaySeven();
 SolveDayEight();
+SolveDayNine();
