@@ -134,9 +134,11 @@ void SolveDayEight()
 
 void SolveDayNine()
 {
-    var dayNineSolutionPartOne = DayNine.CountPositionsVisitedByTail(GetInput(nameof(DayNine)));
+    var dayNineSolutionPartOne = DayNine.CountPositionsVisitedByTail(GetInput(nameof(DayNine)), 2);
+    var dayNineSolutionPartTwo = DayNine.CountPositionsVisitedByTail(GetInput(nameof(DayNine)), 10);
     
     Console.WriteLine($"Day nine solution (Part One): {dayNineSolutionPartOne}");
+    Console.WriteLine($"Day nine solution (Part Two): {dayNineSolutionPartTwo}");
 }
 
 SolveDayOne();

@@ -2,7 +2,7 @@
 
 public static class DayNine
 {
-    public static int CountPositionsVisitedByTail(IEnumerable<string> input)
+    public static int CountPositionsVisitedByTail(IEnumerable<string> input, int ropeSegments)
     {
         const string up = "U";
         const string down = "D";
@@ -10,20 +10,25 @@ public static class DayNine
         const string right = "R";
 
         var head = new RopeSegment();
-        var tail = new RopeSegment();
 
-        head.Append(tail);
+        var currentSegment = head;
+        for (var i = 0; i < ropeSegments -1; i++)
+        {
+            var nextSegment = new RopeSegment();
+            currentSegment.Append(nextSegment);
+            currentSegment = nextSegment;
+        }
 
         foreach (var instruction in input)
         {
             var instructionParts = instruction.Split(" ");
 
-            MovementDirection? movementDirection = instructionParts[0] switch
+            var movement = instructionParts[0] switch
             {
-                up => MovementDirection.Up,
-                down => MovementDirection.Down,
-                left => MovementDirection.Left,
-                right => MovementDirection.Right,
+                up => new Movement(0, -1),
+                down => new Movement(0, 1),
+                left => new Movement(-1,  0),
+                right => new Movement(1, 0),
                 _ => throw new ArgumentOutOfRangeException(nameof(input))
             };
 
@@ -33,15 +38,16 @@ public static class DayNine
                 throw new ArgumentException("Invalid instruction", nameof(input));
             }
 
-            head.Move(movementDirection.Value, steps);
+            for (var i = 0; i < steps; i++)
+            {
+                head.Move(movement);
+            }
         }
 
-        var lastSegment = head;
-        while (lastSegment.NextSegment != null)
-        {
-            lastSegment = lastSegment.NextSegment;
-        }
+        var positionsVisitedByTail = currentSegment.PreviousPositions
+            .Append(currentSegment.Position)
+            .Distinct();
 
-        return lastSegment.PreviousPositions.Append(lastSegment.Position).Distinct().Count();
+        return positionsVisitedByTail.Count();
     }
 }
