@@ -7,6 +7,7 @@ using AdventOfCode2022.Solutions.DayNine;
 using AdventOfCode2022.Solutions.DayOne;
 using AdventOfCode2022.Solutions.DaySeven;
 using AdventOfCode2022.Solutions.DaySix;
+using AdventOfCode2022.Solutions.DayTen;
 using AdventOfCode2022.Solutions.DayThree;
 using AdventOfCode2022.Solutions.DayTwo;
 
@@ -141,6 +142,23 @@ void SolveDayNine()
     Console.WriteLine($"Day nine solution (Part Two): {dayNineSolutionPartTwo}");
 }
 
+void SolveDayTen()
+{
+    var dayTenSolutionPartOne = DayTen.SumOfSignalStrengths(
+        GetInput(nameof(DayTen)),
+        new[]
+        {
+            20,
+            60,
+            100,
+            140,
+            180,
+            220
+        });
+    
+    Console.WriteLine($"Day ten solution (Part One): {dayTenSolutionPartOne}");
+}
+
 SolveDayOne();
 SolveDayTwo();
 SolveDayThree();
@@ -150,3 +168,4 @@ SolveDaySix();
 SolveDaySeven();
 SolveDayEight();
 SolveDayNine();
+SolveDayTen();
