@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using AdventOfCode2022.Solutions.DayEight;
+﻿using AdventOfCode2022.Solutions.DayEight;
 using AdventOfCode2022.Solutions.DayFive;
 using AdventOfCode2022.Solutions.DayFour;
 using AdventOfCode2022.Solutions.DayNine;
@@ -157,6 +155,9 @@ void SolveDayTen()
         });
     
     Console.WriteLine($"Day ten solution (Part One): {dayTenSolutionPartOne}");
+    Console.WriteLine("Day ten solution (Part Two): ");
+
+    DayTen.RunCrtToCompletion(GetInput(nameof(DayTen)));
 }
 
 SolveDayOne();
