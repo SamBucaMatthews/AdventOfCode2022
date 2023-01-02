@@ -2,37 +2,41 @@
 
 public class Monkey
 {
-    private readonly Queue<int> _items;
-    private readonly Func<int, int> _operation;
-    private readonly Func<int, int> _throwToTest;
+    private readonly Queue<ulong> _items;
+    private readonly Func<ulong, ulong> _operation;
+    private readonly Func<int, ulong, int> _throwToTest;
+
+    public int Divisor { get; }
 
     public int ItemsInspectedCount { get; private set; }
 
     public Monkey(
-        Queue<int> items,
-        Func<int, int> operation,
-        Func<int, int> throwToTest)
+        Queue<ulong> items,
+        Func<ulong, ulong> operation,
+        Func<int, ulong, int> throwToTest,
+        int divisor)
     {
         _items = items;
         _operation = operation;
         _throwToTest = throwToTest;
+        Divisor = divisor;
     }
 
-    public void CatchItem(int item)
+    public void CatchItem(ulong item)
         => _items.Enqueue(item);
 
-    public IEnumerable<(int Item, int Recipient)> InspectItems()
+    public IEnumerable<(ulong Item, int Recipient)> InspectItems(Func<ulong, ulong> worryHandler)
     {
-        var inspectedItems = new List<(int Item, int Recipient)>();
+        var inspectedItems = new List<(ulong Item, int Recipient)>();
 
         while (_items.Any())
         {
             var item = _items.Dequeue();
 
             item = _operation(item);
-            item /= 3;
+            item = worryHandler(item);
 
-            inspectedItems.Add((item, _throwToTest(item)));
+            inspectedItems.Add((item, _throwToTest(Divisor, item)));
             ItemsInspectedCount++;
         }
 

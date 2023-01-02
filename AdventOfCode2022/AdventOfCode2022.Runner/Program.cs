@@ -163,8 +163,11 @@ void SolveDayTen()
 
 void SolveDayEleven()
 {
-    var dayElevenSolutionPartOne = DayEleven.GetLevelOfMonkeyBusiness();
+    var dayElevenSolutionPartOne = DayEleven.GetLevelOfMonkeyBusiness(20, true);
+    var dayElevenSolutionPartTwo = DayEleven.GetLevelOfMonkeyBusiness(10000, false);
+
     Console.WriteLine($"Day eleven solution (Part One): {dayElevenSolutionPartOne}");
+    Console.WriteLine($"Day eleven solution (Part Two): {dayElevenSolutionPartTwo}");
 }
 
 SolveDayOne();
