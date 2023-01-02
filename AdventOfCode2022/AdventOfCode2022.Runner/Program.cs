@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2022.Solutions.DayEight;
+using AdventOfCode2022.Solutions.DayEleven;
 using AdventOfCode2022.Solutions.DayFive;
 using AdventOfCode2022.Solutions.DayFour;
 using AdventOfCode2022.Solutions.DayNine;
@@ -160,6 +161,12 @@ void SolveDayTen()
     DayTen.RunCrtToCompletion(GetInput(nameof(DayTen)));
 }
 
+void SolveDayEleven()
+{
+    var dayElevenSolutionPartOne = DayEleven.GetLevelOfMonkeyBusiness();
+    Console.WriteLine($"Day eleven solution (Part One): {dayElevenSolutionPartOne}");
+}
+
 SolveDayOne();
 SolveDayTwo();
 SolveDayThree();
@@ -170,3 +177,4 @@ SolveDaySeven();
 SolveDayEight();
 SolveDayNine();
 SolveDayTen();
+SolveDayEleven();
