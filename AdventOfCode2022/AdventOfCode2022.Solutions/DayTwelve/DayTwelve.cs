@@ -5,7 +5,29 @@
 /// </summary>
 public static class DayTwelve
 {
-    public static int FindFewestStepsToGoal(IEnumerable<string> input)
+    public static int FindFewestStepsToGoal(string[] input)
+    {
+        var terrainMap = new TerrainMap(input, 'S', 'E');
+        var edges = new List<Tuple<Point, Point>>();
+        
+        foreach (var point in terrainMap.Points)
+        {
+            edges.AddRange(point.GetEdges(terrainMap.Points));
+        }
+        
+        var graph = new Graph<Point>(terrainMap.Points, edges);
+
+        var shortestPath = BreadthFirstSearcher.Search(graph, terrainMap.Start!);
+
+        foreach (var vertex in terrainMap.Points)
+        {
+            Console.WriteLine("shortest path to {0,2}: {1}", vertex, string.Join(", ", shortestPath(vertex)));
+        }
+
+        return shortestPath(terrainMap.End!).Count();
+    }
+
+    public static void TestThing()
     {
         var vertices = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         var edges = new[]
@@ -17,13 +39,12 @@ public static class DayTwelve
         };
 
         var graph = new Graph<int>(vertices, edges);
-        
+
         var shortestPath = BreadthFirstSearcher.Search(graph, 1);
         foreach (var vertex in vertices)
         {
             Console.WriteLine("shortest path to {0,2}: {1}", vertex, string.Join(", ", shortestPath(vertex)));
         }
 
-        return 0;
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace AdventOfCode2022.Tests;
+﻿using AdventOfCode2022.Solutions.DayTwelve;
 
-using AdventOfCode2022.Solutions.DayTwelve;
+namespace AdventOfCode2022.Tests.DayTwelveTests;
 
 public class DayTwelveTests
 {
