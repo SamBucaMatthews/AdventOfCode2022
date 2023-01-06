@@ -173,9 +173,16 @@ void SolveDayEleven()
 
 void SolveDayTwelve()
 {
-    var dayTwelveSolutionPartOne = DayTwelve.FindFewestStepsToGoal(GetInput(nameof(DayTwelve)).ToArray());
+    var dayTwelveSolutionPartOne = DayTwelve.FindFewestStepsToGoal(
+        GetInput(nameof(DayTwelve)).ToArray(),
+        new[] { 'S' });
 
+    var dayTwelveSolutionPartTwo = DayTwelve.FindFewestStepsToGoal(
+        GetInput(nameof(DayTwelve)).ToArray(),
+        new []{ 'S', 'a' });
+    
     Console.WriteLine($"Day twelve solution (Part One): {dayTwelveSolutionPartOne}");
+    Console.WriteLine($"Day twelve solution (Part Two): {dayTwelveSolutionPartTwo}");
 }
 
 SolveDayOne();

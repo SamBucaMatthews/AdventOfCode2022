@@ -14,10 +14,19 @@ public class DayTwelveTests
     };
 
     [Test]
-    public void FindFewestStepsToGoal_GivenInputFromExample_SolvesCorrectly()
+    public void FindFewestStepsToGoalFromStart_GivenInputFromExample_SolvesCorrectly()
     {
         const int expected = 31;
-        var actual = DayTwelve.FindFewestStepsToGoal(ExampleInput);
+        var actual = DayTwelve.FindFewestStepsToGoal(ExampleInput, new []{ 'S' });
+        
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void FindFewestStepsToGoalFromAllLowestPositions_GivenInputFromExample_SolvesCorrectly()
+    {
+        const int expected = 29;
+        var actual = DayTwelve.FindFewestStepsToGoal(ExampleInput, new []{ 'S', 'a' });
         
         Assert.That(actual, Is.EqualTo(expected));
     }

@@ -2,13 +2,13 @@
 
 public class TerrainMap
 {
-    public Point? Start { get; }
+    public List<Point> StartingPositions { get; } = new();
 
     public Point? End { get; }
 
     public List<Point> Points { get; }
 
-    public TerrainMap(IReadOnlyList<string> input, char startChar, char endChar)
+    public TerrainMap(IReadOnlyList<string> input, char[] startChars, char endChar)
     {
         var rowCount = input.Count;
         var columnCount = input[0].Length;
@@ -26,9 +26,9 @@ public class TerrainMap
                     columnNumber,
                     LetterToHeight(letter));
 
-                if (letter == startChar)
+                if (startChars.Contains(letter))
                 {
-                    Start = point;
+                    StartingPositions.Add(point);
                 }
 
                 if (letter == endChar)

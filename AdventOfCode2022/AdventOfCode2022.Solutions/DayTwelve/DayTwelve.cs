@@ -2,15 +2,17 @@
 
 public static class DayTwelve
 {
-    public static int FindFewestStepsToGoal(string[] input)
+    public static int FindFewestStepsToGoal(string[] input, char[] startingLetters)
     {
-        var terrainMap = new TerrainMap(input, 'S', 'E');
+        var fewestSteps = int.MaxValue;
+        
+        var terrainMap = new TerrainMap(input, startingLetters, 'E');
         var edges = new List<Tuple<Point, Point>>();
         
         foreach (var point in terrainMap.Points)
         {
             var potentialEdges = point.GetNeighbours(terrainMap.Points);
-            
+
             foreach (var potentialEdge in potentialEdges)
             {
                 if (potentialEdge?.Height <= point.Height + 1)
@@ -19,10 +21,26 @@ public static class DayTwelve
                 }
             }
         }
-        
-        var graph = new Graph<Point>(terrainMap.Points, edges);
-        var findShortestPath = BreadthFirstSearcher.Search(graph, terrainMap.Start!);
 
-        return findShortestPath(terrainMap.End!).Count() - 1;
+        var graph = new Graph<Point>(terrainMap.Points, edges);
+
+        foreach (var startingPosition in terrainMap.StartingPositions)
+        {
+            var findShortestPath = BreadthFirstSearcher.Search(graph, startingPosition);
+            try
+            {
+                var stepsToGoal = findShortestPath(terrainMap.End!).Count() - 1;
+
+                if (stepsToGoal < fewestSteps)
+                {
+                    fewestSteps = stepsToGoal;
+                }
+            }
+            catch (EndNotReachedException)
+            {
+            }
+        }
+
+        return fewestSteps;
     }
 }

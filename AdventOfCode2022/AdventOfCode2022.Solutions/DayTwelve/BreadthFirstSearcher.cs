@@ -34,6 +34,11 @@ public static class BreadthFirstSearcher
 
             var current = v;
 
+            if (!previous.TryGetValue(current, out _))
+            {
+                throw new EndNotReachedException();
+            }
+
             while (!current.Equals(start))
             {
                 path.Add(current);
