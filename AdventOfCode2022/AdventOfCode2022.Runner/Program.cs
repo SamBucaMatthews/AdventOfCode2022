@@ -8,6 +8,7 @@ using AdventOfCode2022.Solutions.DaySeven;
 using AdventOfCode2022.Solutions.DaySix;
 using AdventOfCode2022.Solutions.DayTen;
 using AdventOfCode2022.Solutions.DayThree;
+using AdventOfCode2022.Solutions.DayTwelve;
 using AdventOfCode2022.Solutions.DayTwo;
 
 IEnumerable<string> GetInput(string dayName)
@@ -170,6 +171,20 @@ void SolveDayEleven()
     Console.WriteLine($"Day eleven solution (Part Two): {dayElevenSolutionPartTwo}");
 }
 
+void SolveDayTwelve()
+{
+    var dayTwelveSolutionPartOne = DayTwelve.FindFewestStepsToGoal(
+        GetInput(nameof(DayTwelve)).ToArray(),
+        new[] { 'S' });
+
+    var dayTwelveSolutionPartTwo = DayTwelve.FindFewestStepsToGoal(
+        GetInput(nameof(DayTwelve)).ToArray(),
+        new []{ 'S', 'a' });
+    
+    Console.WriteLine($"Day twelve solution (Part One): {dayTwelveSolutionPartOne}");
+    Console.WriteLine($"Day twelve solution (Part Two): {dayTwelveSolutionPartTwo}");
+}
+
 SolveDayOne();
 SolveDayTwo();
 SolveDayThree();
@@ -181,3 +196,4 @@ SolveDayEight();
 SolveDayNine();
 SolveDayTen();
 SolveDayEleven();
+SolveDayTwelve();
