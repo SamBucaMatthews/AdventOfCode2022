@@ -175,10 +175,10 @@ void SolveDayTwelve()
 {
     var dayTwelveSolutionPartOne = DayTwelve.FindFewestStepsToGoal(GetInput(nameof(DayTwelve)).ToArray());
 
-    Console.WriteLine($"Day eleven solution (Part One): {dayTwelveSolutionPartOne}");
+    Console.WriteLine($"Day twelve solution (Part One): {dayTwelveSolutionPartOne}");
 }
 
-/*SolveDayOne();
+SolveDayOne();
 SolveDayTwo();
 SolveDayThree();
 SolveDayFour();
@@ -188,5 +188,5 @@ SolveDaySeven();
 SolveDayEight();
 SolveDayNine();
 SolveDayTen();
-SolveDayEleven();*/
+SolveDayEleven();
 SolveDayTwelve();

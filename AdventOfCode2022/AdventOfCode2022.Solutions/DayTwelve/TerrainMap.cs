@@ -8,9 +8,9 @@ public class TerrainMap
 
     public List<Point> Points { get; }
 
-    public TerrainMap(string[] input, char startChar, char endChar)
+    public TerrainMap(IReadOnlyList<string> input, char startChar, char endChar)
     {
-        var rowCount = input.Length;
+        var rowCount = input.Count;
         var columnCount = input[0].Length;
 
         Points = new List<Point>();
