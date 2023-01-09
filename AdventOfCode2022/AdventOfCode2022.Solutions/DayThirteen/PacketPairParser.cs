@@ -6,31 +6,43 @@ public static class PacketPairParser
     {
         var output = new List<Tuple<List<object>, List<object>>>();
 
+        for (var i = 0; i < input.Length; i += 3)
+        {
+            var item1 = Parse(input[i]);
+            var item2 = Parse(input[i + 1]);
+
+            output.Add(Tuple.Create(item1, item2));
+        }
+
         return output;
     }
 
     public static List<object> Parse(string input)
     {
-        var list = new List<object>();
-        var currentList = list;
+        var result = new List<object>();
+        var currentList = result;
+        var stack = new Stack<List<object>>();
+        
         for (var i = 0; i < input.Length; i++)
         {
             var c = input[i];
-            if (int.TryParse(c.ToString(), out var intElement))
+            if (c == '[' && i != 0)
             {
-                currentList.Add(intElement);
-            }
-            else if (c == '[' && i != 0)
-            {
-                currentList = new List<object>();
+                var newList = new List<object>();
+                currentList.Add(newList);
+                stack.Push(currentList);
+                currentList = newList;
             }
             else if (c == ']' && i != input.Length - 1)
             {
-                list.Add(currentList);
-                currentList = list;
+                currentList = stack.Pop();
+            }
+            else if (int.TryParse(c.ToString(), out var intElement))
+            {
+                currentList.Add(intElement);
             }
         }
 
-        return list;
+        return result;
     }
 }

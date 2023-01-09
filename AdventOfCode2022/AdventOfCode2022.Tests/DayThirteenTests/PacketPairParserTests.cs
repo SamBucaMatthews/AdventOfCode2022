@@ -145,4 +145,27 @@ public class PacketPairParserTests
         
         Assert.That(actual, Is.EqualTo(expected));
     }
+    
+    [Test]
+    public void Parse_GivenListWithDeeplyNestedList_ParsesCorrectly()
+    {
+        const string input = "[[[[[1]]]]]";
+        var expected = new List<object>
+        {
+            new List<object>
+            {
+                new List<object>
+                {
+                    new List<object>
+                    {
+                        new List<object> { 1 },
+                    }
+                }
+            },
+        };
+
+        var actual = PacketPairParser.Parse(input);
+        
+        Assert.That(actual, Is.EqualTo(expected));
+    }
 }
