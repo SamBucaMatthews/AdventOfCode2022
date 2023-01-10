@@ -25,6 +25,9 @@ public class PacketPairParserTests
         "",
         "[[[]]]",
         "[[]]",
+        "",
+        "[1,[2,[3,[4,[5,6,7]]]],8,9]",
+        "[1,[2,[3,[4,[5,6,0]]]],8,9]",
     };
 
     [Test]
@@ -41,6 +44,8 @@ public class PacketPairParserTests
             new(new List<object> { 7, 7, 7, 7 }, new List<object> { 7, 7, 7 }),
             new(new List<object>(), new List<object> { 3 }),
             new(new List<object> { new List<object> { new List<object>() } }, new List<object> { new List<object>() }),
+            new(new List<object> { 1, new List<object> { 2, new List<object> { 3 , new List<object> { 4, new List<object> { 5, 6, 7 }, }}}, 8, 9},
+                new List<object> { 1, new List<object> { 2, new List<object> { 3 , new List<object> { 4, new List<object> { 5, 6, 0 } }}}, 8, 9}),
         };
         
         var actual = PacketPairParser.ParsePairs(ExampleInput);
