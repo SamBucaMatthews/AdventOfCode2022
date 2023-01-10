@@ -4,20 +4,6 @@ using AdventOfCode2022.Solutions.DayThirteen;
 
 public class PairComparerTests
 {
-    private List<Tuple<List<object>, List<object>>> _parsedInputFromExample = new()
-    {
-        new Tuple<List<object>, List<object>>(new List<object> { 1, 1, 3, 1, 1, }, new List<object> { 1, 1, 5, 1, 1 }),
-        new Tuple<List<object>, List<object>>(new List<object> { new List<int> { 1 }, new List<int> { 2, 3, 4 } },
-            new List<object> { new List<int> { 1 }, 4 }),
-        new Tuple<List<object>, List<object>>(new List<object> { 9 }, new List<object> { new List<int> { 8, 7, 6 } }),
-        new Tuple<List<object>, List<object>>(new List<object> { new List<int> { 4, 4 }, 4, 4 },
-            new List<object> { new List<int> { 4, 4 }, 4, 4, 4 }),
-        new Tuple<List<object>, List<object>>(new List<object> { 7, 7, 7, 7 }, new List<object> { 7, 7, 7 }),
-        new Tuple<List<object>, List<object>>(new List<object>(), new List<object> { 3 }),
-        new Tuple<List<object>, List<object>>(new List<object> { new List<object> { new List<object>() } },
-            new List<object> { new List<object>() }),
-    };
-
     [Test]
     public void PairsInCorrectOrder_GivenTwoEmptyPairs_ReturnsTrue()
     {
@@ -181,5 +167,17 @@ public class PairComparerTests
         var actual = PairComparer.PairsInCorrectOrder(pairs);
         
         Assert.That(actual, Is.EqualTo(false));
+    }
+    
+    [Test]
+    public void PairsInCorrectOrder_GivenMixedListsInCorrectOrder_ReturnsTrue()
+    {
+        var pairs = new Tuple<List<object>, List<object>>(
+            new List<object> { new List<int> { 1 }, new List<int> { 2, 3, 4 } },
+            new List<object> { new List<int> { 1 }, 4 });
+
+        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        
+        Assert.That(actual, Is.EqualTo(true));
     }
 }

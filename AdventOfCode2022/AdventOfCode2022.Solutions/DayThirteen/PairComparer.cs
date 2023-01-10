@@ -13,19 +13,27 @@ public static class PairComparer
 
         foreach (var elementPair in zippedElements)
         {
-            if (elementPair is { First: List<object> firstList, Second: List<object> secondList })
-            {
-                if (firstList.Zip(secondList).Any(e => !CompareInts((int)e.First, (int)e.Second)))
-                {
-                    return false;
-                }
-            }
-            else if (elementPair is { First: int firstInt, Second: int secondInt })
+            if (elementPair is { First: int firstInt, Second: int secondInt })
             {
                 if (!CompareInts(firstInt, secondInt))
                 {
                     return false;
                 }
+            }
+            else if (elementPair.First is List<object> || elementPair.Second is List<object>)
+            {
+                var firstList = elementPair.First as List<object> ?? new List<object> { elementPair.First };
+                var secondList = elementPair.Second as List<object> ?? new List<object> { elementPair.Second };
+
+                if (!PairsInCorrectOrder(Tuple.Create(firstList, secondList)))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                // TODO: Remove this block (only here as the else if above is broken for PairsInCorrectOrder_GivenMixedListsInCorrectOrder_ReturnsTrue)
+                return false;
             }
         }
 

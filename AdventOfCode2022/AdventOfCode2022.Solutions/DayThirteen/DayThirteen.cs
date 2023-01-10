@@ -1,14 +1,20 @@
 ﻿namespace AdventOfCode2022.Solutions.DayThirteen;
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-
 public static class DayThirteen
 {
-    public static int SumOfIndicesOfPairsInRightOrder(string[] input)
+    public static int SumIndicesOfCorrectlyOrderedPairs(string[] input)
     {
-        var jsonNode = JsonSerializer.SerializeToNode(input[0]);
+        var parsedPairs = PacketPairParser.ParsePairs(input);
+        var correctlyOrderedPairs = new List<int>();
 
-        return 0;
+        for (var i = 0; i < parsedPairs.Count; i++)
+        {
+            if (PairComparer.PairsInCorrectOrder(parsedPairs[i]))
+            {
+                correctlyOrderedPairs.Add(i + 1);
+            }
+        }
+
+        return correctlyOrderedPairs.Sum();
     }
 }
