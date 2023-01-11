@@ -63,6 +63,18 @@ public class PairComparerTests
         
         Assert.That(actual, Is.EqualTo(true));
     }
+
+    [Test]
+    public void PairsInCorrectOrder_GivenTwoNestedEmptyLists_ReturnsTrue()
+    {
+        var pairs = new Tuple<List<object>, List<object>>(
+            new List<object> { new List<object> { new List<object>() } },
+            new List<object> { new List<object> { new List<object>() } });
+
+        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        
+        Assert.That(actual, Is.EqualTo(true));
+    }
     
     [Test]
     public void PairsInCorrectOrder_GivenTwoIdenticalLists_ReturnsTrue()
@@ -142,6 +154,42 @@ public class PairComparerTests
         var pairs = new Tuple<List<object>, List<object>>(
             new List<object> { new List<object> { new List<object>() } },
             new List<object> { new List<object>() });
+
+        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        
+        Assert.That(actual, Is.EqualTo(false));
+    }
+    
+    [Test]
+    public void PairsInCorrectOrder_GivenEmptyListsWhenLeftSideRunsOutFirst_ReturnsTrue()
+    {
+        var pairs = new Tuple<List<object>, List<object>>(
+            new List<object> { new List<object>() },
+            new List<object> { new List<object> { new List<object>() } });
+
+        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        
+        Assert.That(actual, Is.EqualTo(true));
+    }
+    
+    [Test]
+    public void PairsInCorrectOrder_GivenListsWithIntsWhenLeftSideRunsOutFirst_ReturnsTrue()
+    {
+        var pairs = new Tuple<List<object>, List<object>>(
+            new List<object> { new List<object> { 1, 2 } },
+            new List<object> { new List<object> { new List<object> { 1, 2, 3 } } });
+
+        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        
+        Assert.That(actual, Is.EqualTo(true));
+    }
+    
+    [Test]
+    public void PairsInCorrectOrder_GivenListsWithIntsWhenRightSideRunsOutFirst_ReturnsFalse()
+    {
+        var pairs = new Tuple<List<object>, List<object>>(
+            new List<object> { new List<object> { new List<object> { 1, 2, 3 } } },
+            new List<object> { new List<object> { 1, 2 } });
 
         var actual = PairComparer.PairsInCorrectOrder(pairs);
         
