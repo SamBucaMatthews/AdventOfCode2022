@@ -7,6 +7,7 @@ using AdventOfCode2022.Solutions.DayOne;
 using AdventOfCode2022.Solutions.DaySeven;
 using AdventOfCode2022.Solutions.DaySix;
 using AdventOfCode2022.Solutions.DayTen;
+using AdventOfCode2022.Solutions.DayThirteen;
 using AdventOfCode2022.Solutions.DayThree;
 using AdventOfCode2022.Solutions.DayTwelve;
 using AdventOfCode2022.Solutions.DayTwo;
@@ -185,7 +186,15 @@ void SolveDayTwelve()
     Console.WriteLine($"Day twelve solution (Part Two): {dayTwelveSolutionPartTwo}");
 }
 
-SolveDayOne();
+void SolveDayThirteen()
+{
+    var dayThirteenSolutionPartOne = DayThirteen.SumIndicesOfCorrectlyOrderedPairs(
+        GetInput(nameof(DayThirteen)).ToArray());
+
+    Console.WriteLine($"Day thirteen solution (Part One): {dayThirteenSolutionPartOne}");
+}
+
+/*SolveDayOne();
 SolveDayTwo();
 SolveDayThree();
 SolveDayFour();
@@ -196,4 +205,5 @@ SolveDayEight();
 SolveDayNine();
 SolveDayTen();
 SolveDayEleven();
-SolveDayTwelve();
+SolveDayTwelve();*/
+SolveDayThirteen();
