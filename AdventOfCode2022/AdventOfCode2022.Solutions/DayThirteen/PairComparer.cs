@@ -4,6 +4,7 @@ namespace AdventOfCode2022.Solutions.DayThirteen;
 
 public static class PairComparer
 {
+    /* To avoid rewriting unit tests! */
     public static bool PairsInCorrectOrder(Tuple<List<object>, List<object>> parsedPair)
     {
         var tuple = Tuple.Create<object?, object?>(parsedPair.Item1, parsedPair.Item2);
@@ -19,16 +20,13 @@ public static class PairComparer
             var list1 = ToList(item1);
             var list2 = ToList(item2);
 
-            if (list1.Count < list2.Count)
-            {
-                var countToAdd = list2.Count - list1.Count;
-                list1.AddRange(Enumerable.Repeat<object?>(null, countToAdd));
-            }
-            else if (list2.Count < list1.Count)
-            {
-                var countToAdd = list1.Count - list2.Count;
-                list2.AddRange(Enumerable.Repeat<object?>(null, countToAdd));
-            }
+            var longerList = list1.Count >= list2.Count ? list1 : list2;
+            var shorterList = list1.Count < list2.Count ? list1 : list2;
+
+            var countToAdd = longerList.Count - shorterList.Count;
+            var fillerElements = Enumerable.Repeat<object?>(null, countToAdd);
+
+            shorterList.AddRange(fillerElements);
 
             for (var i = 0; i < list2.Count; i++)
             {
@@ -39,7 +37,7 @@ public static class PairComparer
                         continue;
                     }
 
-                    return CompareInts(int1, int2);
+                    return int2 >= int1;
                 }
 
                 if (list1[i] is not null && list2[i] is null)
@@ -67,8 +65,6 @@ public static class PairComparer
             }
             : ((IList)item!).Cast<object?>()
             .ToList();
-
-    private static bool CompareInts(int? first, int? second) => second >= first;
 
     private static bool IsList(object? o) =>
         o is IList &&
