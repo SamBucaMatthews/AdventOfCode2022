@@ -8,6 +8,11 @@ public static class PacketPairParser
 
         for (var i = 0; i < input.Length; i += 3)
         {
+            if (string.IsNullOrEmpty(input[i]) || string.IsNullOrEmpty(input[i + 1]))
+            {
+                continue;
+            }
+
             var item1 = Parse(input[i]);
             var item2 = Parse(input[i + 1]);
 
@@ -22,27 +27,62 @@ public static class PacketPairParser
         var result = new List<object>();
         var currentList = result;
         var stack = new Stack<List<object>>();
-        
+        var number = "";
+
         for (var i = 0; i < input.Length; i++)
         {
             var c = input[i];
+
             if (c == '[' && i != 0)
             {
+                if (!string.IsNullOrEmpty(number))
+                {
+                    AddAndResetNumber(currentList, ref number);
+                }
+
                 var newList = new List<object>();
                 currentList.Add(newList);
                 stack.Push(currentList);
                 currentList = newList;
             }
-            else if (c == ']' && i != input.Length - 1)
+            else if (c == ',')
             {
-                currentList = stack.Pop();
+                if (string.IsNullOrEmpty(number))
+                {
+                    continue;
+                }
+
+                AddAndResetNumber(currentList, ref number);
             }
-            else if (int.TryParse(c.ToString(), out var intElement))
+            else if (c == ']')
             {
-                currentList.Add(intElement);
+                if (!string.IsNullOrEmpty(number))
+                {
+                    AddAndResetNumber(currentList, ref number);
+                }
+
+                if (stack.Count > 0)
+                {
+                    currentList = stack.Pop();
+                }
+            }
+            else if (char.IsDigit(c))
+            {
+                number += c;
             }
         }
 
+        if (!string.IsNullOrEmpty(number))
+        {
+            currentList.Add(int.Parse(number));
+        }
+
         return result;
+    }
+
+    private static void AddAndResetNumber(ICollection<object> currentList, ref string number)
+    {
+        currentList.Add(int.Parse(number));
+        number = "";
     }
 }

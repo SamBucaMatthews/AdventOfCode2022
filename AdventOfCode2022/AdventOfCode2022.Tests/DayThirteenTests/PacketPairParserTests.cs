@@ -65,10 +65,32 @@ public class PacketPairParserTests
     }
 
     [Test]
-    public void Parse_GivenListWithSingleInts_ReturnsListWithInts()
+    public void Parse_GivenListWithSingleInt_ReturnsListWithInt()
     {
         const string input = "[2]";
         var expected = new List<object> { 2 };
+
+        var actual = PacketPairParser.Parse(input);
+        
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void Parse_GivenListWithDoubleDigitInt_ReturnsListWithInt()
+    {
+        const string input = "[20]";
+        var expected = new List<object> { 20 };
+
+        var actual = PacketPairParser.Parse(input);
+        
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void Parse_GivenListWithTripleDigitInt_ReturnsListWithInt()
+    {
+        const string input = "[200]";
+        var expected = new List<object> { 200 };
 
         var actual = PacketPairParser.Parse(input);
         
@@ -171,6 +193,32 @@ public class PacketPairParserTests
 
         var actual = PacketPairParser.Parse(input);
         
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void Parse_GivenAnotherNestedList_ParsesCorrectly()
+    {
+        const string input = "[[1,[2,[3]]]]";
+
+        var expected = new List<object> 
+        { 
+            new List<object>
+            {
+                1,
+                new List<object>
+                {
+                    2,
+                    new List<object>
+                    {
+                        3
+                    }
+                }
+            }
+        };
+
+        var actual = PacketPairParser.Parse(input);
+
         Assert.That(actual, Is.EqualTo(expected));
     }
 }

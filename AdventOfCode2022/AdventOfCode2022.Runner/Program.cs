@@ -14,9 +14,9 @@ using AdventOfCode2022.Solutions.DayTwo;
 
 IEnumerable<string> GetInput(string dayName)
 {
-    var dayOneInputFile = $@".\Inputs\{dayName}\input.txt";
+    var inputFile = $@".\Inputs\{dayName}\input.txt";
 
-    return File.ReadAllLines(dayOneInputFile);
+    return File.ReadAllLines(inputFile);
 }
 
 void SolveDayOne()
@@ -194,7 +194,7 @@ void SolveDayThirteen()
     Console.WriteLine($"Day thirteen solution (Part One): {dayThirteenSolutionPartOne}");
 }
 
-/*SolveDayOne();
+SolveDayOne();
 SolveDayTwo();
 SolveDayThree();
 SolveDayFour();
@@ -205,5 +205,5 @@ SolveDayEight();
 SolveDayNine();
 SolveDayTen();
 SolveDayEleven();
-SolveDayTwelve();*/
+SolveDayTwelve();
 SolveDayThirteen();
