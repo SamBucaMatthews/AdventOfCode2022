@@ -7,15 +7,16 @@ using AdventOfCode2022.Solutions.DayOne;
 using AdventOfCode2022.Solutions.DaySeven;
 using AdventOfCode2022.Solutions.DaySix;
 using AdventOfCode2022.Solutions.DayTen;
+using AdventOfCode2022.Solutions.DayThirteen;
 using AdventOfCode2022.Solutions.DayThree;
 using AdventOfCode2022.Solutions.DayTwelve;
 using AdventOfCode2022.Solutions.DayTwo;
 
 IEnumerable<string> GetInput(string dayName)
 {
-    var dayOneInputFile = $@".\Inputs\{dayName}\input.txt";
+    var inputFile = $@".\Inputs\{dayName}\input.txt";
 
-    return File.ReadAllLines(dayOneInputFile);
+    return File.ReadAllLines(inputFile);
 }
 
 void SolveDayOne()
@@ -185,6 +186,22 @@ void SolveDayTwelve()
     Console.WriteLine($"Day twelve solution (Part Two): {dayTwelveSolutionPartTwo}");
 }
 
+void SolveDayThirteen()
+{
+    var dayThirteenSolutionPartOne = DayThirteen.SumIndicesOfCorrectlyOrderedPairs(
+        GetInput(nameof(DayThirteen)).ToArray());
+
+    var dayThirteenSolutionPartTwo = DayThirteen.GetDecoderKey(GetInput(nameof(DayThirteen)));
+
+    const int actualAnswerToPart2 = 23049; // Got this from another solution :(
+
+    Console.WriteLine($"Day thirteen solution (Part One): {dayThirteenSolutionPartOne}");
+
+    Console.WriteLine(dayThirteenSolutionPartTwo != actualAnswerToPart2
+        ? $"Day thirteen solution (Part Two): {dayThirteenSolutionPartTwo}, but should be {actualAnswerToPart2}"
+        : $"Day thirteen solution (Part Two): {dayThirteenSolutionPartTwo}. Why haven't you changed this conditional yet?");
+}
+
 SolveDayOne();
 SolveDayTwo();
 SolveDayThree();
@@ -197,3 +214,4 @@ SolveDayNine();
 SolveDayTen();
 SolveDayEleven();
 SolveDayTwelve();
+SolveDayThirteen();
