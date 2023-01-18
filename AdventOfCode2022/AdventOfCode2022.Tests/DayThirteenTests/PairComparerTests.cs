@@ -4,6 +4,14 @@ using AdventOfCode2022.Solutions.DayThirteen;
 
 public class PairComparerTests
 {
+    private PairComparer _pairComparer = null!;
+
+    [SetUp]
+    public void SetUp()
+    {
+        _pairComparer = new PairComparer();
+    }
+    
     [Test]
     public void PairsInCorrectOrder_GivenTwoEmptyPairs_ReturnsTrue()
     {
@@ -11,9 +19,9 @@ public class PairComparerTests
             new List<object>(),
             new List<object>());
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(true));
+        Assert.That(actual, Is.EqualTo(1));
     }
 
     [Test]
@@ -23,9 +31,9 @@ public class PairComparerTests
             new List<object> { 1 },
             new List<object> { 1 });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(true));
+        Assert.That(actual, Is.EqualTo(1));
     }
     
     [Test]
@@ -35,9 +43,9 @@ public class PairComparerTests
             new List<object> { 1, 2, 3 },
             new List<object> { 4, 5, 6 });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(true));
+        Assert.That(actual, Is.EqualTo(1));
     }
     
     [Test]
@@ -47,9 +55,9 @@ public class PairComparerTests
             new List<object> { 4, 5, 6 },
             new List<object> { 1, 2, 3 });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(false));
+        Assert.That(actual, Is.EqualTo(-1));
     }
     
     [Test]
@@ -59,9 +67,9 @@ public class PairComparerTests
             new List<object> { new List<object>() },
             new List<object> { new List<object>() });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(true));
+        Assert.That(actual, Is.EqualTo(1));
     }
 
     [Test]
@@ -71,9 +79,9 @@ public class PairComparerTests
             new List<object> { new List<object> { new List<object>() } },
             new List<object> { new List<object> { new List<object>() } });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(true));
+        Assert.That(actual, Is.EqualTo(1));
     }
     
     [Test]
@@ -83,9 +91,9 @@ public class PairComparerTests
             new List<object> { new List<object> { 1 } },
             new List<object> { new List<object> { 1 } });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(true));
+        Assert.That(actual, Is.EqualTo(1));
     }
     
     [Test]
@@ -95,9 +103,9 @@ public class PairComparerTests
             new List<object> { new List<object> { 1, 1, 3, 1, 1 } },
             new List<object> { new List<object> { 1, 1, 5, 1, 1 } });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(true));
+        Assert.That(actual, Is.EqualTo(1));
     }
     
     [Test]
@@ -107,9 +115,9 @@ public class PairComparerTests
             new List<object> { new List<object> { 4, 5, 6 } },
             new List<object> { new List<object> { 1, 2, 3 } });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(false));
+        Assert.That(actual, Is.EqualTo(-1));
     }
     
     [Test]
@@ -119,9 +127,9 @@ public class PairComparerTests
             new List<object> { 7, 7, 7, 7 },
             new List<object> { 7, 7, 7 });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(false));
+        Assert.That(actual, Is.EqualTo(-1));
     }
     
     [Test]
@@ -131,9 +139,9 @@ public class PairComparerTests
             new List<object>(),
             new List<object> { 3 });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(true));
+        Assert.That(actual, Is.EqualTo(1));
     }
     
     [Test]
@@ -143,9 +151,9 @@ public class PairComparerTests
             new List<object> { new List<object> { 4, 4 }, 4, 4 },
             new List<object> { new List<object> { 4, 4 }, 4, 4, 4 });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(true));
+        Assert.That(actual, Is.EqualTo(1));
     }
     
     [Test]
@@ -155,9 +163,9 @@ public class PairComparerTests
             new List<object> { new List<object> { new List<object>() } },
             new List<object> { new List<object>() });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(false));
+        Assert.That(actual, Is.EqualTo(-1));
     }
     
     [Test]
@@ -167,9 +175,9 @@ public class PairComparerTests
             new List<object> { new List<object>() },
             new List<object> { new List<object> { new List<object>() } });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(true));
+        Assert.That(actual, Is.EqualTo(1));
     }
     
     [Test]
@@ -179,9 +187,9 @@ public class PairComparerTests
             new List<object> { new List<object> { 1, 2 } },
             new List<object> { new List<object> { new List<object> { 1, 2, 3 } } });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(true));
+        Assert.That(actual, Is.EqualTo(1));
     }
     
     [Test]
@@ -191,9 +199,9 @@ public class PairComparerTests
             new List<object> { new List<object> { new List<object> { 1, 2, 3 } } },
             new List<object> { new List<object> { 1, 2 } });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(false));
+        Assert.That(actual, Is.EqualTo(-1));
     }
     
     [Test]
@@ -212,9 +220,9 @@ public class PairComparerTests
                 8, 9
             });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(false));
+        Assert.That(actual, Is.EqualTo(-1));
     }
     
     [Test]
@@ -224,8 +232,8 @@ public class PairComparerTests
             new List<object> { new List<int> { 1 }, new List<int> { 2, 3, 4 } },
             new List<object> { new List<int> { 1 }, 4 });
 
-        var actual = PairComparer.PairsInCorrectOrder(pairs);
+        var actual = _pairComparer.Compare(pairs.Item1, pairs.Item2);
         
-        Assert.That(actual, Is.EqualTo(true));
+        Assert.That(actual, Is.EqualTo(1));
     }
 }

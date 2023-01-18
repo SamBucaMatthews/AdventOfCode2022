@@ -2,16 +2,14 @@
 
 namespace AdventOfCode2022.Solutions.DayThirteen;
 
-public static class PairComparer
+public class PairComparer : IComparer
 {
-    public static bool PairsInCorrectOrder(Tuple<object?, object?> pair)
+    public int Compare(object? x, object? y)
     {
         while (true)
         {
-            var (item1, item2) = pair;
-
-            var list1 = ToList(item1);
-            var list2 = ToList(item2);
+            var list1 = ToList(x);
+            var list2 = ToList(y);
 
             var longerList = list1.Count >= list2.Count ? list1 : list2;
             var shorterList = list1.Count < list2.Count ? list1 : list2;
@@ -30,23 +28,23 @@ public static class PairComparer
                         continue;
                     }
 
-                    return int2 >= int1;
+                    return int2 >= int1 ? 1 : -1;
                 }
 
                 if (list1[i] is not null && list2[i] is null)
                 {
-                    return false;
+                    return -1;
                 }
 
                 if (list1[i] is null && list2[i] is not null)
                 {
-                    return true;
+                    return 1;
                 }
 
-                return PairsInCorrectOrder(Tuple.Create(list1[i], list2[i]));
+                return Compare(list1[i], list2[i]);
             }
 
-            return true;
+            return 1;
         }
     }
 
