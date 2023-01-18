@@ -39,4 +39,14 @@ public class DayThirteenTests
         
         Assert.That(actual, Is.EqualTo(expected));
     }
+
+    [Test]
+    public void GetDecoderKey_GivenInputFromExample_SolvesCorrectly()
+    {
+        const int expected = 140;
+
+        var actual = DayThirteen.GetDecoderKey(ExampleInput);
+        
+        Assert.That(actual, Is.EqualTo(expected));
+    }
 }

@@ -191,7 +191,15 @@ void SolveDayThirteen()
     var dayThirteenSolutionPartOne = DayThirteen.SumIndicesOfCorrectlyOrderedPairs(
         GetInput(nameof(DayThirteen)).ToArray());
 
+    var dayThirteenSolutionPartTwo = DayThirteen.GetDecoderKey(GetInput(nameof(DayThirteen)));
+
+    const int actualAnswerToPart2 = 23049; // Got this from another solution :(
+
     Console.WriteLine($"Day thirteen solution (Part One): {dayThirteenSolutionPartOne}");
+
+    Console.WriteLine(dayThirteenSolutionPartTwo != actualAnswerToPart2
+        ? $"Day thirteen solution (Part Two): {dayThirteenSolutionPartTwo}, but should be {actualAnswerToPart2}"
+        : $"Day thirteen solution (Part Two): {dayThirteenSolutionPartTwo}. Why haven't you changed this conditional yet?");
 }
 
 SolveDayOne();

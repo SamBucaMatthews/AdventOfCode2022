@@ -5,12 +5,7 @@
     &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.DayThirteenTests.DayThirteenTests.SumOfIndicesOfPairsInRightOrder_GivenInputFromExample_SolvesCorrectly&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=51be6ba9_002D61be_002D4c1c_002D8dd6_002D6ccabd554e58/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="SumOfIndicesOfPairsInRightOrder_GivenInputFromExample_SolvesCorrectly" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.DayThirteenTests.PacketPairParserTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::61B53EED-67D8-40DC-B8FD-CF3BA01B8428::net7.0::AdventOfCode2022.Tests.DayThirteenTests.PairComparerTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
+	
 	
 	
 	
