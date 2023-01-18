@@ -7,7 +7,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenTwoEmptyPairs_ReturnsTrue()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object>(),
             new List<object>());
 
@@ -19,7 +19,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenSameInts_ReturnsTrue()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { 1 },
             new List<object> { 1 });
 
@@ -31,7 +31,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenIntsInCorrectOrder_ReturnsTrue()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { 1, 2, 3 },
             new List<object> { 4, 5, 6 });
 
@@ -43,7 +43,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenIntsInWrongOrder_ReturnsFalse()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { 4, 5, 6 },
             new List<object> { 1, 2, 3 });
 
@@ -55,7 +55,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenTwoEmptyLists_ReturnsTrue()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { new List<object>() },
             new List<object> { new List<object>() });
 
@@ -67,7 +67,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenTwoNestedEmptyLists_ReturnsTrue()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { new List<object> { new List<object>() } },
             new List<object> { new List<object> { new List<object>() } });
 
@@ -79,7 +79,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenTwoIdenticalLists_ReturnsTrue()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { new List<object> { 1 } },
             new List<object> { new List<object> { 1 } });
 
@@ -91,7 +91,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenTwoListsWithIntsInCorrectOrder_ReturnsTrue()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { new List<object> { 1, 1, 3, 1, 1 } },
             new List<object> { new List<object> { 1, 1, 5, 1, 1 } });
 
@@ -103,7 +103,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenTwoListsWithIntsInWrongOrder_ReturnsFalse()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { new List<object> { 4, 5, 6 } },
             new List<object> { new List<object> { 1, 2, 3 } });
 
@@ -115,7 +115,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_WhenRightSideRunsOutOfItems_ReturnsFalse()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { 7, 7, 7, 7 },
             new List<object> { 7, 7, 7 });
 
@@ -127,7 +127,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_WhenLeftSideRunsOutOfItems_ReturnsTrue()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object>(),
             new List<object> { 3 });
 
@@ -139,7 +139,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenMixedListInCorrectOrder_ReturnsTrue()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { new List<object> { 4, 4 }, 4, 4 },
             new List<object> { new List<object> { 4, 4 }, 4, 4, 4 });
 
@@ -151,7 +151,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenEmptyListsWhenRightSideRunsOutFirst_ReturnsFalse()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { new List<object> { new List<object>() } },
             new List<object> { new List<object>() });
 
@@ -163,7 +163,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenEmptyListsWhenLeftSideRunsOutFirst_ReturnsTrue()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { new List<object>() },
             new List<object> { new List<object> { new List<object>() } });
 
@@ -175,7 +175,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenListsWithIntsWhenLeftSideRunsOutFirst_ReturnsTrue()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { new List<object> { 1, 2 } },
             new List<object> { new List<object> { new List<object> { 1, 2, 3 } } });
 
@@ -187,7 +187,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenListsWithIntsWhenRightSideRunsOutFirst_ReturnsFalse()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { new List<object> { new List<object> { 1, 2, 3 } } },
             new List<object> { new List<object> { 1, 2 } });
 
@@ -199,7 +199,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenDeeplyNestedListsInWrongOrder_ReturnsFalse()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object>
             {
                 1,
@@ -220,7 +220,7 @@ public class PairComparerTests
     [Test]
     public void PairsInCorrectOrder_GivenMixedListsInCorrectOrder_ReturnsTrue()
     {
-        var pairs = new Tuple<List<object>, List<object>>(
+        var pairs = new Tuple<object?, object?>(
             new List<object> { new List<int> { 1 }, new List<int> { 2, 3, 4 } },
             new List<object> { new List<int> { 1 }, 4 });
 

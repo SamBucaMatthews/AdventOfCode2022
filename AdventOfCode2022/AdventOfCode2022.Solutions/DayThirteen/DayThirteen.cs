@@ -9,7 +9,8 @@ public static class DayThirteen
 
         for (var i = 0; i < parsedPairs.Count; i++)
         {
-            if (PairComparer.PairsInCorrectOrder(parsedPairs[i]))
+            var pair = parsedPairs[i];
+            if (PairComparer.PairsInCorrectOrder(Tuple.Create<object?, object?>(pair.Item1, pair.Item2)))
             {
                 correctlyOrderedPairs.Add(i + 1);
             }

@@ -4,14 +4,7 @@ namespace AdventOfCode2022.Solutions.DayThirteen;
 
 public static class PairComparer
 {
-    /* To avoid rewriting unit tests! */
-    public static bool PairsInCorrectOrder(Tuple<List<object>, List<object>> parsedPair)
-    {
-        var tuple = Tuple.Create<object?, object?>(parsedPair.Item1, parsedPair.Item2);
-        return PairsInCorrectOrder(tuple);
-    }
-
-    private static bool PairsInCorrectOrder(Tuple<object?, object?> pair)
+    public static bool PairsInCorrectOrder(Tuple<object?, object?> pair)
     {
         while (true)
         {
