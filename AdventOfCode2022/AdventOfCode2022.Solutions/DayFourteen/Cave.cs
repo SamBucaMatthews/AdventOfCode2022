@@ -12,7 +12,7 @@ public class Cave
         _sandStartingPoint = sandStartingPoint;
     }
 
-    private HashSet<Point> BuildRocks(IEnumerable<string> rows)
+    private static HashSet<Point> BuildRocks(IEnumerable<string> rows)
     {
         var rocks = new HashSet<Point>();
         foreach (var row in rows)
@@ -48,20 +48,5 @@ public class Cave
         }
 
         return rocks;
-    }
-}
-
-public record Point(int Column, int Row)
-{
-    public static Point Parse(string input)
-    {
-        var parts = input.Split(",");
-
-        if (parts.Length != 2 || !int.TryParse(parts[0], out var column) ||!int.TryParse(parts[1], out var row))
-        {
-            throw new ArgumentException(input);
-        }
-        
-        return new Point(column, row);
     }
 }
