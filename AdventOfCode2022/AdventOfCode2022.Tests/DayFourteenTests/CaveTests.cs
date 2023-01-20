@@ -132,7 +132,26 @@ public class CaveTests
 
         var cave = BuildCaveFromExample();
 
-        ProduceSand(cave, 1);
+        ProduceSand(cave, 2);
+        
+        Assert.That(cave.SettledSand, Is.EquivalentTo(expectedSettledSand));
+    }
+    
+    [Test]
+    public void ProduceSand_GivenFiveCyclesAndInputFromExample_UpdatesSettledSandCorrectly()
+    {
+        var expectedSettledSand = new HashSet<Point>
+        {
+            new(500, 8),
+            new(499, 8),
+            new(500, 7),
+            new(498, 8),
+            new(501, 8),
+        };
+
+        var cave = BuildCaveFromExample();
+
+        ProduceSand(cave, 5);
         
         Assert.That(cave.SettledSand, Is.EquivalentTo(expectedSettledSand));
     }
@@ -145,5 +164,5 @@ public class CaveTests
         }
     }
 
-    private static Cave BuildCaveFromExample() => new Cave(ExampleInput, StartingPoint);
+    private static Cave BuildCaveFromExample() => new(ExampleInput, StartingPoint);
 }

@@ -17,17 +17,34 @@ public class Cave
     
     public void ProduceSand()
     {
-        var column = _sandStartingPoint.Column;
-        var row = _sandStartingPoint.Row;
-
+        var currentSandPosition = _sandStartingPoint with { };
         while (true)
         {
-            row++;
-            break;
+            Point nextPosition;
+            if (CanMove(currentSandPosition.Down))
+            {
+                nextPosition = currentSandPosition.Down;
+            }
+            else if (CanMove(currentSandPosition.DownAndLeft))
+            {
+                nextPosition = currentSandPosition.DownAndLeft;
+            }
+            else if (CanMove(currentSandPosition.DownAndRight))
+            {
+                nextPosition = currentSandPosition.DownAndRight;
+            }
+            else
+            {
+                break;
+            }
+
+            currentSandPosition = nextPosition;
         }
         
-        SettledSand.Add(new Point(column, row));
+        SettledSand.Add(currentSandPosition);
     }
+
+    private bool CanMove(Point nextPosition) => !Rocks.Contains(nextPosition) && !SettledSand.Contains(nextPosition);
 
     private static HashSet<Point> BuildRocks(IEnumerable<string> rows)
     {
