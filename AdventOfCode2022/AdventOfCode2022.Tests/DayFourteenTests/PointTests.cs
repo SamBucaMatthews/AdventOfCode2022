@@ -8,7 +8,7 @@ public class PointTests
     public void Parse_GivenValidString_ReturnsCorrectPoint()
     {
         const string input = "498,4";
-        var expected = new Point(4, 498);
+        var expected = new Point(498, 4);
 
         var actual = Point.Parse(input);
         
