@@ -5,11 +5,28 @@ public class Cave
     private readonly Point _sandStartingPoint;
 
     public HashSet<Point> Rocks { get; }
+
+    public HashSet<Point> SettledSand { get; }
     
     public Cave(IEnumerable<string> rows, Point sandStartingPoint)
     {
         Rocks = BuildRocks(rows);
+        SettledSand = new HashSet<Point>();
         _sandStartingPoint = sandStartingPoint;
+    }
+    
+    public void ProduceSand()
+    {
+        var column = _sandStartingPoint.Column;
+        var row = _sandStartingPoint.Row;
+
+        while (true)
+        {
+            row++;
+            break;
+        }
+        
+        SettledSand.Add(new Point(column, row));
     }
 
     private static HashSet<Point> BuildRocks(IEnumerable<string> rows)
