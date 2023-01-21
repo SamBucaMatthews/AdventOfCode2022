@@ -155,6 +155,89 @@ public class CaveTests
         
         Assert.That(cave.SettledSand, Is.EquivalentTo(expectedSettledSand));
     }
+    
+    [Test]
+    public void ProduceSand_Given22CyclesAndInputFromExample_UpdatesSettledSandCorrectly()
+    {
+        var expectedSettledSand = new HashSet<Point>
+        {
+            new(497, 8),
+
+            new(498, 8),
+            new(498, 7),
+
+            new(499, 3),
+            new(499, 4),
+            new(499, 5),
+            new(499, 6),
+            new(499, 7),
+            new(499, 8),
+
+            new(500, 2),
+            new(500, 3),
+            new(500, 4),
+            new(500, 5),
+            new(500, 6),
+            new(500, 7),
+            new(500, 8),
+            
+            new(501, 3),
+            new(501, 4),
+            new(501, 5),
+            new(501, 6),
+            new(501, 7),
+            new(501, 8),
+        };
+
+        var cave = BuildCaveFromExample();
+
+        ProduceSand(cave, 22);
+        
+        Assert.That(cave.SettledSand, Is.EquivalentTo(expectedSettledSand));
+    }
+
+    [Test]
+    public void ProduceSand_Given24CyclesAndInputFromExample_UpdatesSettledSandCorrectly()
+    {
+        var expectedSettledSand = new HashSet<Point>
+        {
+            new(495, 8),
+
+            new(497, 5),
+            new(497, 8),
+
+            new(498, 8),
+            new(498, 7),
+
+            new(499, 3),
+            new(499, 4),
+            new(499, 5),
+            new(499, 6),
+            new(499, 7),
+            new(499, 8),
+
+            new(500, 2),
+            new(500, 3),
+            new(500, 4),
+            new(500, 5),
+            new(500, 6),
+            new(500, 7),
+            new(500, 8),
+            
+            new(501, 3),
+            new(501, 4),
+            new(501, 5),
+            new(501, 6),
+            new(501, 7),
+            new(501, 8),
+        };
+
+        var cave = BuildCaveFromExample();
+
+        ProduceSand(cave, 24);
+        
+        Assert.That(cave.SettledSand, Is.EquivalentTo(expectedSettledSand));
+    }
 
     private static void ProduceSand(Cave cave, int iterations)
     {

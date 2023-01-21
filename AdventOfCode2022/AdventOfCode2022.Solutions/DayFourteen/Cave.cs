@@ -3,6 +3,7 @@
 public class Cave
 {
     private readonly Point _sandStartingPoint;
+    private readonly int _maxRow;
 
     public HashSet<Point> Rocks { get; }
 
@@ -11,6 +12,7 @@ public class Cave
     public Cave(IEnumerable<string> rows, Point sandStartingPoint)
     {
         Rocks = BuildRocks(rows);
+        _maxRow = Rocks.Max(r => r.Row);
         SettledSand = new HashSet<Point>();
         _sandStartingPoint = sandStartingPoint;
     }
@@ -18,7 +20,7 @@ public class Cave
     public void ProduceSand()
     {
         var currentSandPosition = _sandStartingPoint with { };
-        while (true)
+        while (currentSandPosition.Row < _maxRow)
         {
             Point nextPosition;
             if (CanMove(currentSandPosition.Down))
