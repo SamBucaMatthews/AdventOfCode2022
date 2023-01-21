@@ -4,6 +4,7 @@ public class Cave
 {
     private readonly Point _sandStartingPoint;
     private readonly int _maxRow;
+    private bool _canFitMoreSand = true;
 
     public HashSet<Point> Rocks { get; }
 
@@ -20,7 +21,7 @@ public class Cave
     public void ProduceSand()
     {
         var currentSandPosition = _sandStartingPoint with { };
-        while (currentSandPosition.Row < _maxRow)
+        while (true)
         {
             Point nextPosition;
             if (CanMove(currentSandPosition.Down))
@@ -40,10 +41,24 @@ public class Cave
                 break;
             }
 
+            if (currentSandPosition.Row == _maxRow)
+            {
+                _canFitMoreSand = false;
+                return;
+            }
+
             currentSandPosition = nextPosition;
         }
         
         SettledSand.Add(currentSandPosition);
+    }
+    
+    public void RunUntilOverflow()
+    {
+        while (_canFitMoreSand)
+        {
+            ProduceSand();
+        }
     }
 
     private bool CanMove(Point nextPosition) => !Rocks.Contains(nextPosition) && !SettledSand.Contains(nextPosition);

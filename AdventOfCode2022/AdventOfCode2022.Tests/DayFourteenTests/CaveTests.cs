@@ -239,6 +239,17 @@ public class CaveTests
         Assert.That(cave.SettledSand, Is.EquivalentTo(expectedSettledSand));
     }
 
+    [Test]
+    public void RunUntilOverflow_GivenInputFromExample_SolvesCorrectly()
+    {
+        const int expected = 24;
+        var cave = BuildCaveFromExample();
+
+        cave.RunUntilOverflow();
+
+        Assert.That(cave.SettledSand, Has.Count.EqualTo(expected));
+    }
+
     private static void ProduceSand(Cave cave, int iterations)
     {
         for (var i = 0; i < iterations; i++)

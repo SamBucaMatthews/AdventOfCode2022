@@ -2,8 +2,12 @@
 
 public static class DayFourteen
 {
-    public static int CountUnitsOfSand(string[] input)
+    public static int CountUnitsOfSand(IEnumerable<string> input)
     {
-        throw new NotImplementedException();
+        var cave = new Cave(input, new Point(500, 0));
+        
+        cave.RunUntilOverflow();
+
+        return cave.SettledSand.Count;
     }
 }
