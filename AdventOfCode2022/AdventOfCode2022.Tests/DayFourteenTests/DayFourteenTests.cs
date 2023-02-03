@@ -10,12 +10,11 @@ public class DayFourteenTests
         "503,4 -> 502,4 -> 502,9 -> 494,9"
     };
 
-    [Test]
-    public void CountUnitsOfSand_GivenExampleFromInput_SolvesCorrectly()
+    [TestCase(24, false)]
+    [TestCase(93, true)]
+    public void CountUnitsOfSand_GivenExampleFromInputWithNoFloor_SolvesCorrectly(int expected, bool hasFloor)
     {
-        const int expected = 24;
-
-        var actual = DayFourteen.CountUnitsOfSand(ExampleInput);
+        var actual = DayFourteen.CountUnitsOfSand(ExampleInput, hasFloor);
         
         Assert.That(actual, Is.EqualTo(expected));
     }

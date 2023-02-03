@@ -189,9 +189,15 @@ void SolveDayTwelve()
 void SolveDayFourteen()
 {
     var dayFourteenSolutionPartOne = DayFourteen.CountUnitsOfSand(
-        GetInput(nameof(DayFourteen)).ToArray());
+        GetInput(nameof(DayFourteen)).ToArray(),
+        false);
+    
+    var dayFourteenSolutionPartTwo = DayFourteen.CountUnitsOfSand(
+        GetInput(nameof(DayFourteen)).ToArray(),
+        true);
     
     Console.WriteLine($"Day fourteen solution (Part One): {dayFourteenSolutionPartOne}");
+    Console.WriteLine($"Day fourteen solution (Part Two): {dayFourteenSolutionPartTwo}");
 }
 
 SolveDayOne();

@@ -3,19 +3,22 @@
 public class Cave
 {
     private readonly Point _sandStartingPoint;
+    private readonly int? _floor;
     private readonly int _maxRow;
+
     private bool _canFitMoreSand = true;
 
     public HashSet<Point> Rocks { get; }
 
     public HashSet<Point> SettledSand { get; }
     
-    public Cave(IEnumerable<string> rows, Point sandStartingPoint)
+    public Cave(IEnumerable<string> rows, Point sandStartingPoint, bool hasFloor)
     {
         Rocks = BuildRocks(rows);
         _maxRow = Rocks.Max(r => r.Row);
         SettledSand = new HashSet<Point>();
         _sandStartingPoint = sandStartingPoint;
+        _floor = hasFloor ? _maxRow + 2 : null;
     }
     
     public void ProduceSand()
@@ -41,7 +44,7 @@ public class Cave
                 break;
             }
 
-            if (currentSandPosition.Row == _maxRow)
+            if (!_floor.HasValue && currentSandPosition.Row == _maxRow)
             {
                 _canFitMoreSand = false;
                 return;
@@ -51,9 +54,14 @@ public class Cave
         }
         
         SettledSand.Add(currentSandPosition);
+        
+        if (_floor.HasValue && currentSandPosition == _sandStartingPoint)
+        {
+            _canFitMoreSand = false;
+        }
     }
     
-    public void RunUntilOverflow()
+    public void Run()
     {
         while (_canFitMoreSand)
         {
@@ -61,7 +69,15 @@ public class Cave
         }
     }
 
-    private bool CanMove(Point nextPosition) => !Rocks.Contains(nextPosition) && !SettledSand.Contains(nextPosition);
+    private bool CanMove(Point nextPosition)
+    {
+        if (_floor.HasValue && nextPosition.Row == _floor.Value)
+        {
+            return false;
+        }
+        
+        return !Rocks.Contains(nextPosition) && !SettledSand.Contains(nextPosition);
+    }
 
     private static HashSet<Point> BuildRocks(IEnumerable<string> rows)
     {

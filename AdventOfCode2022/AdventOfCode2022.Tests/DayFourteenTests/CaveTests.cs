@@ -44,7 +44,7 @@ public class CaveTests
             new(494, 9),
         };
 
-        var cave = new Cave(ExampleInput, StartingPoint);
+        var cave = new Cave(ExampleInput, StartingPoint, false);
         
         Assert.That(cave.Rocks, Is.EquivalentTo(expectedRocks));
     }
@@ -62,7 +62,7 @@ public class CaveTests
             new(103, 0),
         };
 
-        var cave = new Cave(new[] { input }, StartingPoint);
+        var cave = new Cave(new[] { input }, StartingPoint, false);
         
         Assert.That(cave.Rocks, Is.EquivalentTo(expectedRocks));
     }
@@ -80,7 +80,7 @@ public class CaveTests
             new(100, 3),
         };
 
-        var cave = new Cave(new[] { input }, StartingPoint);
+        var cave = new Cave(new[] { input }, StartingPoint, false);
         
         Assert.That(cave.Rocks, Is.EquivalentTo(expectedRocks));
     }
@@ -101,7 +101,7 @@ public class CaveTests
             new(103, 3),
         };
 
-        var cave = new Cave(new[] { input }, StartingPoint);
+        var cave = new Cave(new[] { input }, StartingPoint, false);
         
         Assert.That(cave.Rocks, Is.EquivalentTo(expectedRocks));
     }
@@ -114,7 +114,7 @@ public class CaveTests
             new(500, 8),
         };
 
-        var cave = BuildCaveFromExample();
+        var cave = BuildCaveFromExample(false);
 
         ProduceSand(cave, 1);
         
@@ -130,7 +130,7 @@ public class CaveTests
             new(499, 8),
         };
 
-        var cave = BuildCaveFromExample();
+        var cave = BuildCaveFromExample(false);
 
         ProduceSand(cave, 2);
         
@@ -149,7 +149,7 @@ public class CaveTests
             new(501, 8),
         };
 
-        var cave = BuildCaveFromExample();
+        var cave = BuildCaveFromExample(false);
 
         ProduceSand(cave, 5);
         
@@ -189,7 +189,7 @@ public class CaveTests
             new(501, 8),
         };
 
-        var cave = BuildCaveFromExample();
+        var cave = BuildCaveFromExample(false);
 
         ProduceSand(cave, 22);
         
@@ -232,7 +232,7 @@ public class CaveTests
             new(501, 8),
         };
 
-        var cave = BuildCaveFromExample();
+        var cave = BuildCaveFromExample(false);
 
         ProduceSand(cave, 24);
         
@@ -240,12 +240,12 @@ public class CaveTests
     }
 
     [Test]
-    public void RunUntilOverflow_GivenInputFromExample_SolvesCorrectly()
+    public void Run_GivenInputFromExample_SolvesCorrectly()
     {
         const int expected = 24;
-        var cave = BuildCaveFromExample();
+        var cave = BuildCaveFromExample(false);
 
-        cave.RunUntilOverflow();
+        cave.Run();
 
         Assert.That(cave.SettledSand, Has.Count.EqualTo(expected));
     }
@@ -258,5 +258,5 @@ public class CaveTests
         }
     }
 
-    private static Cave BuildCaveFromExample() => new(ExampleInput, StartingPoint);
+    private static Cave BuildCaveFromExample(bool hasFloor) => new(ExampleInput, StartingPoint, hasFloor);
 }

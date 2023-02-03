@@ -2,11 +2,11 @@
 
 public static class DayFourteen
 {
-    public static int CountUnitsOfSand(IEnumerable<string> input)
+    public static int CountUnitsOfSand(IEnumerable<string> input, bool hasFloor)
     {
-        var cave = new Cave(input, new Point(500, 0));
+        var cave = new Cave(input, new Point(500, 0), hasFloor);
         
-        cave.RunUntilOverflow();
+        cave.Run();
 
         return cave.SettledSand.Count;
     }
