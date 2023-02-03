@@ -2,6 +2,7 @@
 using AdventOfCode2022.Solutions.DayEleven;
 using AdventOfCode2022.Solutions.DayFive;
 using AdventOfCode2022.Solutions.DayFour;
+using AdventOfCode2022.Solutions.DayFourteen;
 using AdventOfCode2022.Solutions.DayNine;
 using AdventOfCode2022.Solutions.DayOne;
 using AdventOfCode2022.Solutions.DaySeven;
@@ -13,9 +14,9 @@ using AdventOfCode2022.Solutions.DayTwo;
 
 IEnumerable<string> GetInput(string dayName)
 {
-    var dayOneInputFile = $@".\Inputs\{dayName}\input.txt";
+    var inputFile = $@".\Inputs\{dayName}\input.txt";
 
-    return File.ReadAllLines(dayOneInputFile);
+    return File.ReadAllLines(inputFile);
 }
 
 void SolveDayOne()
@@ -185,6 +186,20 @@ void SolveDayTwelve()
     Console.WriteLine($"Day twelve solution (Part Two): {dayTwelveSolutionPartTwo}");
 }
 
+void SolveDayFourteen()
+{
+    var dayFourteenSolutionPartOne = DayFourteen.CountUnitsOfSand(
+        GetInput(nameof(DayFourteen)).ToArray(),
+        false);
+    
+    var dayFourteenSolutionPartTwo = DayFourteen.CountUnitsOfSand(
+        GetInput(nameof(DayFourteen)).ToArray(),
+        true);
+    
+    Console.WriteLine($"Day fourteen solution (Part One): {dayFourteenSolutionPartOne}");
+    Console.WriteLine($"Day fourteen solution (Part Two): {dayFourteenSolutionPartTwo}");
+}
+
 SolveDayOne();
 SolveDayTwo();
 SolveDayThree();
@@ -197,3 +212,4 @@ SolveDayNine();
 SolveDayTen();
 SolveDayEleven();
 SolveDayTwelve();
+SolveDayFourteen();
